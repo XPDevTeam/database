@@ -1,0 +1,3999 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql" id="Project-22da" database="MySql" >
+	<schema name="xp_dev" >
+		<table name="aditivosContratos" row_count="2" spec="" >
+			<column name="contrato" type="INT" jt="4" mandatory="y" />
+			<column name="idAditivo" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="dataAditivo" type="DATE" jt="91" mandatory="y" />
+			<column name="motivo" type="VARCHAR" length="500" jt="12" mandatory="y" />
+			<column name="valor" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="numeroAditivo" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="colaboradorAutorizouAditivo" type="INT" jt="4" mandatory="y" />
+			<index name="pk_aditivoscontratos" unique="PRIMARY_KEY" >
+				<column name="idAditivo" />
+			</index>
+			<index name="R_21" unique="NORMAL" >
+				<column name="contrato" />
+			</index>
+			<index name="R_55" unique="NORMAL" >
+				<column name="colaboradorAutorizouAditivo" />
+			</index>
+			<fk name="aditivosContratos_ibfk_1" to_schema="xp_dev" to_table="contratos" options="" >
+				<fk_column name="contrato" pk="idContrato" />
+			</fk>
+			<fk name="aditivosContratos_ibfk_2" to_schema="xp_dev" to_table="colaboradores" options="" >
+				<fk_column name="colaboradorAutorizouAditivo" pk="idColaborador" />
+			</fk>
+		</table>
+		<table name="agendaOrdemServico" row_count="0" spec="" >
+			<column name="agenda" type="INT" jt="4" mandatory="y" />
+			<column name="idItemOrdemServico" type="INT" jt="4" mandatory="y" />
+			<column name="idAgendaOrdemServico" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="dataInicioServico" type="DATE" jt="91" mandatory="y" />
+			<column name="dataTerminoServico" type="DATE" jt="91" />
+			<column name="tecnicoExecutou" type="INT" jt="4" mandatory="y" />
+			<column name="tecnicoDigitou" type="INT" jt="4" />
+			<column name="equipeAgenda" type="INT" jt="4" mandatory="y" />
+			<index name="pk_agendaordemservico" unique="PRIMARY_KEY" >
+				<column name="idAgendaOrdemServico" />
+			</index>
+			<index name="R_57" unique="NORMAL" >
+				<column name="agenda" />
+			</index>
+			<index name="R_58" unique="NORMAL" >
+				<column name="idItemOrdemServico" />
+			</index>
+			<index name="R_67" unique="NORMAL" >
+				<column name="tecnicoExecutou" />
+			</index>
+			<index name="R_68" unique="NORMAL" >
+				<column name="tecnicoDigitou" />
+			</index>
+			<index name="R_72" unique="NORMAL" >
+				<column name="equipeAgenda" />
+			</index>
+			<fk name="agendaOrdemServico_ibfk_1" to_schema="xp_dev" to_table="agendas" options="" >
+				<fk_column name="agenda" pk="idAgenda" />
+			</fk>
+			<fk name="agendaOrdemServico_ibfk_2" to_schema="xp_dev" to_table="itensOrdensServicos" options="" >
+				<fk_column name="idItemOrdemServico" pk="idItemOrdemServico" />
+			</fk>
+			<fk name="agendaOrdemServico_ibfk_3" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="tecnicoExecutou" pk="idUsuario" />
+			</fk>
+			<fk name="agendaOrdemServico_ibfk_4" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="tecnicoDigitou" pk="idUsuario" />
+			</fk>
+			<fk name="agendaOrdemServico_ibfk_5" to_schema="xp_dev" to_table="equipesAgendas" options="" >
+				<fk_column name="equipeAgenda" pk="idEquipeAgenda" />
+			</fk>
+		</table>
+		<table name="agendas" row_count="0" spec="" >
+			<column name="idAgenda" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="ordemServico" type="INT" jt="4" mandatory="y" />
+			<column name="inicioAtendimentoPrevisto" type="DATE" jt="91" mandatory="y" />
+			<column name="terminoAtendimentoPrevisto" type="DATE" jt="91" mandatory="y" />
+			<column name="colaboradorFiscalizadorOS" type="INT" jt="4" />
+			<column name="dataAceiteServicosRealizados" type="DATE" jt="91" />
+			<column name="inicioAtendimentoRealizado" type="DATE" jt="91" />
+			<column name="terminoiAtendimentoRealizado" type="DATE" jt="91" />
+			<column name="observacao" type="VARCHAR" length="500" jt="12" />
+			<index name="pk_agendas" unique="PRIMARY_KEY" >
+				<column name="idAgenda" />
+			</index>
+			<index name="R_53" unique="NORMAL" >
+				<column name="ordemServico" />
+			</index>
+			<index name="R_56" unique="NORMAL" >
+				<column name="colaboradorFiscalizadorOS" />
+			</index>
+			<fk name="agendas_ibfk_1" to_schema="xp_dev" to_table="ordensServicos" options="" >
+				<fk_column name="ordemServico" pk="idOrdemServico" />
+			</fk>
+			<fk name="agendas_ibfk_2" to_schema="xp_dev" to_table="colaboradores" options="" >
+				<fk_column name="colaboradorFiscalizadorOS" pk="idColaborador" />
+			</fk>
+		</table>
+		<table name="authsLog" row_count="79" spec="" >
+			<column name="authId" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="userId" type="INT" jt="4" mandatory="y" />
+			<column name="genDateTime" type="DATETIME" jt="93" mandatory="y" />
+			<column name="sixDigitCode" type="CHAR" length="6" jt="1" mandatory="y" />
+			<column name="token" type="VARCHAR" length="1024" jt="12" />
+			<column name="attempts" type="SMALLINT" jt="5" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="lastAttempt" type="DATETIME" jt="93" />
+			<column name="timedOut" type="CHAR" length="1" jt="1" />
+			<column name="success" type="CHAR" length="1" jt="1" />
+			<column name="logout" type="DATETIME" jt="93" />
+			<index name="pk_authslog" unique="PRIMARY_KEY" >
+				<column name="authId" />
+			</index>
+			<index name="ALTPRIMARY" unique="UNIQUE_KEY" >
+				<column name="genDateTime" />
+			</index>
+		</table>
+		<table name="baterias" row_count="2" spec="" >
+			<column name="tipo" type="CHAR" length="1" jt="1" mandatory="y" />
+			<column name="capacidade" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="elemento" type="VARCHAR" length="3" jt="12" mandatory="y" />
+			<column name="fornecimento" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="equipamentoCliente" type="INT" jt="4" mandatory="y" />
+			<column name="idBateria" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<index name="pk_baterias" unique="PRIMARY_KEY" >
+				<column name="idBateria" />
+			</index>
+			<index name="R_14" unique="NORMAL" >
+				<column name="equipamentoCliente" />
+			</index>
+			<fk name="baterias_ibfk_1" to_schema="xp_dev" to_table="equipamentosClientes" options="" >
+				<fk_column name="equipamentoCliente" pk="idEquipamentoCliente" />
+			</fk>
+		</table>
+		<table name="cidades" row_count="6" spec="" >
+			<column name="idCidade" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nome" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="estado" type="INT" jt="4" mandatory="y" />
+			<column name="sigla" type="VARCHAR" length="5" jt="12" />
+			<index name="pk_cidades" unique="PRIMARY_KEY" >
+				<column name="idCidade" />
+			</index>
+			<index name="XAK1cidadesEstadoNome" unique="UNIQUE_KEY" >
+				<column name="estado" />
+				<column name="nome" />
+			</index>
+			<fk name="cidades_ibfk_1" to_schema="xp_dev" to_table="estados" options="" >
+				<fk_column name="estado" pk="idEstado" />
+			</fk>
+		</table>
+		<table name="codificacoesListas" row_count="13" spec="" >
+			<column name="idCodificacaoLista" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="grupoCodificacaoLista" type="INT" jt="4" />
+			<column name="descricao" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="numero" type="VARCHAR" length="25" jt="12" mandatory="y" />
+			<column name="codigoExterno" type="VARCHAR" length="30" jt="12" />
+			<column name="unidadeMedida" type="INT" jt="4" />
+			<index name="pk_codificacoeslistas" unique="PRIMARY_KEY" >
+				<column name="idCodificacaoLista" />
+			</index>
+			<index name="XAK1codificacoesListasCodDescricao" unique="UNIQUE_KEY" >
+				<column name="idCodificacaoLista" />
+				<column name="descricao" />
+			</index>
+			<index name="R_25" unique="NORMAL" >
+				<column name="grupoCodificacaoLista" />
+			</index>
+			<index name="codificacoesListas_ibfk_2" unique="NORMAL" >
+				<column name="unidadeMedida" />
+			</index>
+			<fk name="codificacoesListas_ibfk_1" to_schema="xp_dev" to_table="codificacoesListas" options="" >
+				<fk_column name="grupoCodificacaoLista" pk="idCodificacaoLista" />
+			</fk>
+			<fk name="codificacoesListas_ibfk_2" to_schema="xp_dev" to_table="unidadesMedidas" options="" >
+				<fk_column name="unidadeMedida" pk="idUnidadeMedida" />
+			</fk>
+		</table>
+		<table name="colaboradores" row_count="6" spec="" >
+			<column name="idColaborador" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nome" type="VARCHAR" length="80" jt="12" mandatory="y" />
+			<column name="celular" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="matricula" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="cargo" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="pessoaFJ" type="INT" jt="4" mandatory="y" />
+			<index name="pk_colaboradores" unique="PRIMARY_KEY" >
+				<column name="idColaborador" />
+			</index>
+			<index name="colaboradores_ibfk_1" unique="NORMAL" >
+				<column name="pessoaFJ" />
+			</index>
+			<fk name="colaboradores_ibfk_1" to_schema="xp_dev" to_table="pessoasFJ" options="" >
+				<fk_column name="pessoaFJ" pk="idPessoaFJ" />
+			</fk>
+		</table>
+		<table name="contratos" row_count="9" spec="" >
+			<column name="idContrato" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="numeroContrato" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="dataInicio" type="DATE" jt="91" />
+			<column name="dataTermino" type="DATE" jt="91" />
+			<column name="valorContrato" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="valorExecutado" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<column name="numeroOrcamento" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="numeroProposta" type="VARCHAR" length="20" jt="12" />
+			<column name="cliente" type="INT" jt="4" mandatory="y" />
+			<column name="valorAditivado" type="DECIMAL" length="9" decimal="2" jt="3" />
+			<index name="pk_contratos" unique="PRIMARY_KEY" >
+				<column name="idContrato" />
+			</index>
+		</table>
+		<table name="equipamentosClientes" row_count="2" spec="" >
+			<column name="equipamentoCliente" type="INT" jt="4" mandatory="y" />
+			<column name="numeroBateria" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="fabricante" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="serie" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="modelo" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="tag" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="dataFabricacao" type="DATE" jt="91" mandatory="y" />
+			<column name="capacidade" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="tensao" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="potencia" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="tensaoEntrada" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="mesAnoFabricacao" type="CHAR" length="6" jt="1" mandatory="y" />
+			<column name="idEquipamentoCliente" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="equipamentoFornecedor" type="INT" jt="4" mandatory="y" />
+			<column name="cliente" type="INT" jt="4" mandatory="y" />
+			<index name="pk_equipamentosclientes" unique="PRIMARY_KEY" >
+				<column name="idEquipamentoCliente" />
+			</index>
+			<index name="XAK1equipamentoClientesFabricante" unique="UNIQUE_KEY" >
+				<column name="fabricante" />
+			</index>
+			<index name="R_12" unique="NORMAL" >
+				<column name="equipamentoCliente" />
+			</index>
+			<index name="R_13" unique="NORMAL" >
+				<column name="equipamentoFornecedor" />
+			</index>
+			<fk name="equipamentosClientes_ibfk_1" to_schema="xp_dev" to_table="recursos" options="" >
+				<fk_column name="equipamentoCliente" pk="idRecurso" />
+			</fk>
+			<fk name="equipamentosClientes_ibfk_2" to_schema="xp_dev" to_table="equipamentosFornecedores" options="" >
+				<fk_column name="equipamentoFornecedor" pk="idEquipamentoFornecedor" />
+			</fk>
+		</table>
+		<table name="equipamentosFornecedores" row_count="4" spec="" >
+			<column name="equipamento" type="INT" jt="4" mandatory="y" />
+			<column name="codigoProdutoFornecedor" type="VARCHAR" length="20" jt="12" />
+			<column name="idEquipamentoFornecedor" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="fornecedor" type="INT" jt="4" mandatory="y" />
+			<index name="pk_equipamentosfornecedores" unique="PRIMARY_KEY" >
+				<column name="idEquipamentoFornecedor" />
+			</index>
+			<index name="R_9" unique="NORMAL" >
+				<column name="equipamento" />
+			</index>
+			<index name="R_66" unique="NORMAL" >
+				<column name="fornecedor" />
+			</index>
+			<fk name="equipamentosFornecedores_ibfk_1" to_schema="xp_dev" to_table="recursos" options="" >
+				<fk_column name="equipamento" pk="idRecurso" />
+			</fk>
+			<fk name="equipamentosFornecedores_ibfk_2" to_schema="xp_dev" to_table="pessoasFJ" options="" >
+				<fk_column name="fornecedor" pk="idPessoaFJ" />
+			</fk>
+		</table>
+		<table name="equipesAgendas" row_count="0" spec="" >
+			<column name="agenda" type="INT" jt="4" mandatory="y" />
+			<column name="idEquipeAgenda" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="tecnicoExecutou" type="INT" jt="4" mandatory="y" />
+			<column name="tecnicoDigitou" type="INT" jt="4" mandatory="y" />
+			<index name="pk_equipesagendas" unique="PRIMARY_KEY" >
+				<column name="idEquipeAgenda" />
+			</index>
+			<index name="R_69" unique="NORMAL" >
+				<column name="agenda" />
+			</index>
+			<index name="R_70" unique="NORMAL" >
+				<column name="tecnicoExecutou" />
+			</index>
+			<index name="R_71" unique="NORMAL" >
+				<column name="tecnicoDigitou" />
+			</index>
+			<fk name="equipesAgendas_ibfk_1" to_schema="xp_dev" to_table="agendas" options="" >
+				<fk_column name="agenda" pk="idAgenda" />
+			</fk>
+			<fk name="equipesAgendas_ibfk_2" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="tecnicoExecutou" pk="idUsuario" />
+			</fk>
+			<fk name="equipesAgendas_ibfk_3" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="tecnicoDigitou" pk="idUsuario" />
+			</fk>
+		</table>
+		<table name="estados" row_count="14" spec="" >
+			<column name="idEstado" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nome" type="VARCHAR" length="80" jt="12" mandatory="y" />
+			<column name="pais" type="INT" jt="4" mandatory="y" />
+			<column name="sigla" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<index name="pk_estados" unique="PRIMARY_KEY" >
+				<column name="idEstado" />
+			</index>
+			<index name="XAK1estadosEstadoNome" unique="UNIQUE_KEY" >
+				<column name="idEstado" />
+				<column name="nome" />
+			</index>
+			<index name="R_2" unique="NORMAL" >
+				<column name="pais" />
+			</index>
+			<fk name="estados_ibfk_1" to_schema="xp_dev" to_table="paises" options="" >
+				<fk_column name="pais" pk="idPais" />
+			</fk>
+		</table>
+		<table name="grupoAcessos" row_count="5" spec="" >
+			<column name="idGrupoAcesso" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nomeGrupo" type="VARCHAR" length="45" jt="12" mandatory="y" />
+			<column name="descricao" type="VARCHAR" length="512" jt="12" />
+			<index name="pk_grupoacessos" unique="PRIMARY_KEY" >
+				<column name="idGrupoAcesso" />
+			</index>
+		</table>
+		<table name="itensCoberturasContratos" row_count="3" spec="" >
+			<column name="localCliente" type="INT" jt="4" mandatory="y" />
+			<column name="contrato" type="INT" jt="4" mandatory="y" />
+			<column name="idItemCoberturaContrato" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="equipamentoCliente" type="INT" jt="4" mandatory="y" />
+			<index name="pk_itenscoberturascontratos" unique="PRIMARY_KEY" >
+				<column name="idItemCoberturaContrato" />
+			</index>
+			<index name="R_15" unique="NORMAL" >
+				<column name="equipamentoCliente" />
+			</index>
+			<index name="R_16" unique="NORMAL" >
+				<column name="localCliente" />
+			</index>
+			<index name="R_18" unique="NORMAL" >
+				<column name="contrato" />
+			</index>
+			<fk name="itensCoberturasContratos_ibfk_1" to_schema="xp_dev" to_table="equipamentosClientes" options="" >
+				<fk_column name="equipamentoCliente" pk="idEquipamentoCliente" />
+			</fk>
+			<fk name="itensCoberturasContratos_ibfk_2" to_schema="xp_dev" to_table="locaisClientes" options="" >
+				<fk_column name="localCliente" pk="idLocalCliente" />
+			</fk>
+			<fk name="itensCoberturasContratos_ibfk_3" to_schema="xp_dev" to_table="contratos" options="" >
+				<fk_column name="contrato" pk="idContrato" />
+			</fk>
+		</table>
+		<table name="itensOrdensServicos" row_count="0" spec="" >
+			<column name="ordemServico" type="INT" jt="4" mandatory="y" />
+			<column name="idItemOrdemServico" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="recurso" type="INT" jt="4" mandatory="y" />
+			<column name="localCliente" type="INT" jt="4" mandatory="y" />
+			<column name="itemCoberturaContrato" type="INT" jt="4" mandatory="y" />
+			<column name="itemOS" type="INT" jt="4" mandatory="y" />
+			<column name="quantidade" type="INT" jt="4" mandatory="y" />
+			<column name="valorUnitario" type="DECIMAL" length="9" decimal="2" jt="3" mandatory="y" />
+			<column name="unidadeMedida" type="INT" jt="4" mandatory="y" />
+			<index name="pk_itensordensservicos" unique="PRIMARY_KEY" >
+				<column name="idItemOrdemServico" />
+			</index>
+			<index name="R_29" unique="NORMAL" >
+				<column name="ordemServico" />
+			</index>
+			<index name="R_30" unique="NORMAL" >
+				<column name="recurso" />
+			</index>
+			<index name="R_31" unique="NORMAL" >
+				<column name="localCliente" />
+			</index>
+			<index name="R_32" unique="NORMAL" >
+				<column name="itemCoberturaContrato" />
+			</index>
+			<index name="R_45" unique="NORMAL" >
+				<column name="unidadeMedida" />
+			</index>
+			<fk name="itensOrdensServicos_ibfk_1" to_schema="xp_dev" to_table="ordensServicos" options="" >
+				<fk_column name="ordemServico" pk="idOrdemServico" />
+			</fk>
+			<fk name="itensOrdensServicos_ibfk_2" to_schema="xp_dev" to_table="recursos" options="" >
+				<fk_column name="recurso" pk="idRecurso" />
+			</fk>
+			<fk name="itensOrdensServicos_ibfk_3" to_schema="xp_dev" to_table="locaisClientes" options="" >
+				<fk_column name="localCliente" pk="idLocalCliente" />
+			</fk>
+			<fk name="itensOrdensServicos_ibfk_4" to_schema="xp_dev" to_table="itensCoberturasContratos" options="" >
+				<fk_column name="itemCoberturaContrato" pk="idItemCoberturaContrato" />
+			</fk>
+			<fk name="itensOrdensServicos_ibfk_5" to_schema="xp_dev" to_table="unidadesMedidas" options="" >
+				<fk_column name="unidadeMedida" pk="idUnidadeMedida" />
+			</fk>
+		</table>
+		<table name="locaisClientes" row_count="14" spec="" >
+			<column name="nomeLocal" type="VARCHAR" length="40" jt="12" mandatory="y" />
+			<column name="geolocalizacao" type="VARCHAR" length="40" jt="12" />
+			<column name="idLocalCliente" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="cliente" type="INT" jt="4" mandatory="y" />
+			<index name="pk_locaisclientes" unique="PRIMARY_KEY" >
+				<column name="idLocalCliente" />
+			</index>
+		</table>
+		<table name="opcoesMenu" row_count="29" spec="" >
+			<column name="idOpcaoMenu" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="grupoOpcaoMenu" type="INT" jt="4" />
+			<column name="rotulo" type="VARCHAR" length="45" jt="12" mandatory="y" />
+			<column name="descricao" type="VARCHAR" length="512" jt="12" />
+			<column name="endpoint" type="VARCHAR" length="45" jt="12" />
+			<column name="icone" type="VARCHAR" length="45" jt="12" />
+			<column name="ordem" type="INT" jt="4" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<column name="numero" type="VARCHAR" length="10" jt="12" />
+			<index name="pk_opcoesmenu" unique="PRIMARY_KEY" >
+				<column name="idOpcaoMenu" />
+			</index>
+			<index name="R_48" unique="NORMAL" >
+				<column name="grupoOpcaoMenu" />
+			</index>
+			<fk name="opcoesMenu_ibfk_1" to_schema="xp_dev" to_table="opcoesMenu" options="" >
+				<fk_column name="grupoOpcaoMenu" pk="idOpcaoMenu" />
+			</fk>
+		</table>
+		<table name="ordensServicos" row_count="4" spec="" >
+			<column name="idOrdemServico" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="contrato" type="INT" jt="4" mandatory="y" />
+			<column name="status" type="INT" jt="4" mandatory="y" />
+			<column name="numeroOrdemServico" type="VARCHAR" length="10" jt="12" mandatory="y" />
+			<column name="dataSolicitacao" type="DATE" jt="91" mandatory="y" />
+			<column name="dataValidadeOrcamento" type="DATE" jt="91" mandatory="y" />
+			<column name="dataEncerramento" type="DATE" jt="91" />
+			<column name="dataFechamentoOS" type="DATE" jt="91" />
+			<column name="valorTotal" type="DECIMAL" length="9" decimal="2" jt="3" mandatory="y" />
+			<column name="colaboradorAutorizouOS" type="INT" jt="4" />
+			<column name="dataAutorizacaoOS" type="DATE" jt="91" />
+			<column name="observacao" type="VARCHAR" length="500" jt="12" />
+			<column name="codigoExterno" type="VARCHAR" length="30" jt="12" />
+			<column name="cliente" type="INT" jt="4" mandatory="y" />
+			<index name="pk_ordensservicos" unique="PRIMARY_KEY" >
+				<column name="idOrdemServico" />
+			</index>
+			<index name="R_28" unique="NORMAL" >
+				<column name="status" />
+			</index>
+			<index name="R_62" unique="NORMAL" >
+				<column name="colaboradorAutorizouOS" />
+			</index>
+			<fk name="ordensServicos_ibfk_2" to_schema="xp_dev" to_table="codificacoesListas" options="" >
+				<fk_column name="status" pk="idCodificacaoLista" />
+			</fk>
+			<fk name="ordensServicos_ibfk_3" to_schema="xp_dev" to_table="colaboradores" options="" >
+				<fk_column name="colaboradorAutorizouOS" pk="idColaborador" />
+			</fk>
+		</table>
+		<table name="paises" row_count="2" spec="" >
+			<column name="idPais" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nome" type="VARCHAR" length="60" jt="12" mandatory="y" />
+			<index name="pk_paises" unique="PRIMARY_KEY" >
+				<column name="idPais" />
+			</index>
+			<index name="XAK1paisesNome" unique="UNIQUE_KEY" >
+				<column name="nome" />
+			</index>
+		</table>
+		<table name="permissoesAcesso" row_count="27" spec="" >
+			<column name="idPermissaoAcesso" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="inclui" type="CHAR" length="1" jt="1" />
+			<column name="altera" type="CHAR" length="1" jt="1" />
+			<column name="exclui" type="CHAR" length="1" jt="1" />
+			<column name="idOpcaoMenu" type="INT" jt="4" mandatory="y" />
+			<column name="grupoAcesso" type="INT" jt="4" mandatory="y" />
+			<column name="ordem" type="SMALLINT" jt="5" mandatory="y" />
+			<index name="pk_permissoesacesso" unique="PRIMARY_KEY" >
+				<column name="idPermissaoAcesso" />
+			</index>
+			<index name="R_50" unique="NORMAL" >
+				<column name="grupoAcesso" />
+			</index>
+			<index name="permissoesAcesso_ibfk_1" unique="NORMAL" >
+				<column name="idOpcaoMenu" />
+			</index>
+			<fk name="permissoesAcesso_ibfk_1" to_schema="xp_dev" to_table="opcoesMenu" options="" >
+				<fk_column name="idOpcaoMenu" pk="idOpcaoMenu" />
+			</fk>
+			<fk name="permissoesAcesso_ibfk_2" to_schema="xp_dev" to_table="grupoAcessos" options="" >
+				<fk_column name="grupoAcesso" pk="idGrupoAcesso" />
+			</fk>
+		</table>
+		<table name="pessoasFJ" row_count="3" spec="" >
+			<column name="idPessoaFJ" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nome" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="apelido" type="VARCHAR" length="40" jt="12" mandatory="y" />
+			<column name="logradouro" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="numero" type="VARCHAR" length="6" jt="12" />
+			<column name="complemento" type="VARCHAR" length="40" jt="12" />
+			<column name="cep" type="VARCHAR" length="8" jt="12" mandatory="y" />
+			<column name="bairro" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="cidade" type="INT" jt="4" mandatory="y" />
+			<column name="cnpj" type="VARCHAR" length="15" jt="12" />
+			<column name="inscricaoEstadual" type="VARCHAR" length="15" jt="12" />
+			<column name="inscricaoMunicipal" type="VARCHAR" length="15" jt="12" />
+			<column name="email" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="tipoFJ" type="CHAR" length="1" jt="1" mandatory="y" />
+			<column name="ativo" type="CHAR" length="1" jt="1" mandatory="y" />
+			<column name="codigoExterno" type="VARCHAR" length="20" jt="12" />
+			<column name="georeferenciamento" type="VARCHAR" length="40" jt="12" />
+			<column name="identidade" type="VARCHAR" length="10" jt="12" />
+			<column name="cpf" type="VARCHAR" length="11" jt="12" />
+			<column name="sexo" type="CHAR" length="1" jt="1" />
+			<column name="dataNascimento" type="DATE" jt="91" />
+			<column name="telefone1" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="contato" type="VARCHAR" length="60" jt="12" />
+			<column name="telefoneContato" type="VARCHAR" length="20" jt="12" />
+			<column name="emailContato" type="VARCHAR" length="80" jt="12" />
+			<column name="telefone2" type="VARCHAR" length="20" jt="12" />
+			<index name="pk_pessoasfj" unique="PRIMARY_KEY" >
+				<column name="idPessoaFJ" />
+			</index>
+			<index name="XAK1pessoasFJNome" unique="UNIQUE_KEY" >
+				<column name="nome" />
+			</index>
+			<index name="R_63" unique="NORMAL" >
+				<column name="cidade" />
+			</index>
+			<fk name="pessoasFJ_ibfk_1" to_schema="xp_dev" to_table="cidades" options="" >
+				<fk_column name="cidade" pk="idCidade" />
+			</fk>
+		</table>
+		<table name="processosOS" row_count="0" spec="" >
+			<column name="idProcessosOS" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="itemOrdemServico" type="INT" jt="4" mandatory="y" />
+			<column name="resposta" type="TEXT" jt="-1" mandatory="y" />
+			<column name="dataHoraUpload" type="DATE" jt="91" mandatory="y" />
+			<column name="dataHoraProcessado" type="DATE" jt="91" />
+			<column name="usuarioUpload" type="INT" jt="4" />
+			<column name="usuarioProcessado" type="INT" jt="4" />
+			<index name="pk_processosos" unique="PRIMARY_KEY" >
+				<column name="idProcessosOS" />
+			</index>
+			<index name="R_44" unique="NORMAL" >
+				<column name="itemOrdemServico" />
+			</index>
+			<index name="R_59" unique="NORMAL" >
+				<column name="usuarioUpload" />
+			</index>
+			<index name="R_60" unique="NORMAL" >
+				<column name="usuarioProcessado" />
+			</index>
+			<fk name="processosOS_ibfk_1" to_schema="xp_dev" to_table="itensOrdensServicos" options="" >
+				<fk_column name="itemOrdemServico" pk="idItemOrdemServico" />
+			</fk>
+			<fk name="processosOS_ibfk_2" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="usuarioUpload" pk="idUsuario" />
+			</fk>
+			<fk name="processosOS_ibfk_3" to_schema="xp_dev" to_table="usuarios" options="" >
+				<fk_column name="usuarioProcessado" pk="idUsuario" />
+			</fk>
+		</table>
+		<table name="recursos" row_count="7" spec="" >
+			<column name="idRecurso" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="grupoRecurso" type="INT" jt="4" />
+			<column name="numero" type="VARCHAR" length="25" jt="12" mandatory="y" />
+			<column name="descricao" type="VARCHAR" length="150" jt="12" mandatory="y" />
+			<column name="tipo" type="INT" jt="4" mandatory="y" />
+			<column name="nivel" type="INT" jt="4" mandatory="y" />
+			<column name="versao" type="VARCHAR" length="15" jt="12" />
+			<column name="atributo" type="TEXT" jt="-1" />
+			<column name="template" type="INT" jt="4" />
+			<column name="formMagnetto" type="INT" jt="4" />
+			<column name="ativo" type="CHAR" length="1" jt="1" mandatory="y" />
+			<column name="unidadeMedida" type="INT" jt="4" mandatory="y" />
+			<column name="codigoExterno" type="VARCHAR" length="30" jt="12" />
+			<index name="pk_recursos" unique="PRIMARY_KEY" >
+				<column name="idRecurso" />
+			</index>
+			<index name="XAK1recursosDescricao" unique="UNIQUE_KEY" >
+				<column name="descricao" />
+			</index>
+			<index name="XAK2recursosNumero" unique="UNIQUE_KEY" >
+				<column name="numero" />
+			</index>
+			<index name="R_6" unique="NORMAL" >
+				<column name="grupoRecurso" />
+			</index>
+			<index name="R_7" unique="NORMAL" >
+				<column name="template" />
+			</index>
+			<index name="R_35" unique="NORMAL" >
+				<column name="unidadeMedida" />
+			</index>
+			<fk name="recursos_ibfk_1" to_schema="xp_dev" to_table="recursos" options="" >
+				<fk_column name="grupoRecurso" pk="idRecurso" />
+			</fk>
+			<fk name="recursos_ibfk_2" to_schema="xp_dev" to_table="recursos" options="" >
+				<fk_column name="template" pk="idRecurso" />
+			</fk>
+			<fk name="recursos_ibfk_3" to_schema="xp_dev" to_table="unidadesMedidas" options="" >
+				<fk_column name="unidadeMedida" pk="idUnidadeMedida" />
+			</fk>
+		</table>
+		<table name="tokens" row_count="93" spec="" >
+			<column name="idToken" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="cliente" type="INT" jt="4" />
+			<column name="usuario" type="INT" jt="4" mandatory="y" />
+			<column name="criadoEm" type="VARCHAR" length="24" jt="12" mandatory="y" />
+			<column name="expiraEm" type="VARCHAR" length="24" jt="12" />
+			<column name="token" type="VARCHAR" length="1024" jt="12" mandatory="y" />
+			<index name="pk_tokens" unique="PRIMARY_KEY" >
+				<column name="idToken" />
+			</index>
+		</table>
+		<table name="unidadesMedidas" row_count="3" spec="" >
+			<column name="idUnidadeMedida" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="descricao" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="sigla" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<index name="pk_unidadesmedidas" unique="PRIMARY_KEY" >
+				<column name="idUnidadeMedida" />
+			</index>
+		</table>
+		<table name="usuarios" row_count="2" spec="" >
+			<column name="idUsuario" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nomeUsuario" type="VARCHAR" length="45" jt="12" mandatory="y" />
+			<column name="login" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="dataInicio" type="DATE" jt="91" />
+			<column name="dataTermino" type="DATE" jt="91" />
+			<column name="ativo" type="CHAR" length="1" jt="1" mandatory="y" />
+			<column name="email" type="VARCHAR" length="45" jt="12" mandatory="y" />
+			<column name="telefone1" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="telefone2" type="VARCHAR" length="20" jt="12" />
+			<column name="emailAlternativo" type="VARCHAR" length="45" jt="12" />
+			<column name="grupoAcesso" type="INT" jt="4" mandatory="y" />
+			<column name="colaborador" type="INT" jt="4" />
+			<column name="senha" type="BLOB" jt="2004" />
+			<column name="senhaProvisoria" type="BLOB" jt="2004" />
+			<column name="validacaoProvisoria" type="DATETIME" jt="93" />
+			<index name="pk_usuarios" unique="PRIMARY_KEY" >
+				<column name="idUsuario" />
+			</index>
+			<index name="R_47" unique="NORMAL" >
+				<column name="grupoAcesso" />
+			</index>
+			<index name="usuarios_ibfk_2" unique="NORMAL" >
+				<column name="colaborador" />
+			</index>
+			<fk name="usuarios_ibfk_1" to_schema="xp_dev" to_table="grupoAcessos" options="" >
+				<fk_column name="grupoAcesso" pk="idGrupoAcesso" />
+			</fk>
+			<fk name="usuarios_ibfk_2" to_schema="xp_dev" to_table="colaboradores" options="" >
+				<fk_column name="colaborador" pk="idColaborador" />
+			</fk>
+		</table>
+		<procedure name="aditivosContratosCriar" id="Procedure-602" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "aditivosContratosCriar"(param_contrato INT,
+														        param_numeroAditivo VARCHAR(10),
+															    param_dataAditivo DATE,
+															    param_motivo VARCHAR(500),
+															    param_valor DECIMAL(9,2),
+															    param_colaboradorAutorizouAditivo INT)
+BEGIN
+
+
+	DECLARE erro INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET erro = TRUE;
+   
+ 	INSERT INTO aditivosContratos (contrato,
+								   numeroAditivo,
+								   dataAditivo,
+								   motivo,
+								   valor,
+								   colaboradorAutorizouAditivo)
+	VALUES (param_contrato,
+			param_numeroAditivo,
+            param_dataAditivo,
+            param_motivo,
+            param_valor,
+            param_colaboradorAutorizouAditivo);
+            
+            
+    IF erro = FALSE THEN       
+		SELECT * FROM aditivosContratos WHERE idAditivo = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="aditivosContratosExcluir" id="Procedure-4a9" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "aditivosContratosExcluir"(param_idAditivo INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM aditivosContratos WHERE idAditivo = param_idAditivo;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idAditivo, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="aditivosContratosLer" id="Procedure-dbe" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "aditivosContratosLer"(param_numeroAditivo VARCHAR(10))
+BEGIN
+   SELECT * 
+     FROM aditivosContratos
+    WHERE numeroAditivo LIKE CONCAT('%', IF(param_numeroAditivo = '*', '', param_numeroAditivo), '%')
+    ORDER BY contrato, numeroAditivo;
+END]]></string>
+		</procedure>
+		<procedure name="aditivosContratsoAtualizar" id="Procedure-1de4" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "aditivosContratsoAtualizar"(param_idAditivo INT,
+																    param_contrato INT,
+																    param_numeroAditivo VARCHAR(10),
+																    param_dataAditivo DATE,
+															        param_motivo VARCHAR(500),
+															        param_valor DECIMAL(9,2),
+															        param_colaboradorAutorizouAditivo INT)
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE aditivosContratos 
+       SET contrato                    = param_contrato,
+		   numeroAditivo               = param_numeroAditivo,
+		   dataAditivo                 = param_dataAditivo,
+		   motivo                      = param_motivo,
+		   valor                       = param_valor,
+		   colaboradorAutorizouAditivo = param_colaboradorAutorizouAditivo
+ 	 WHERE idAditivo = param_idAditivo;
+            
+            
+    IF rollback = FALSE THEN       
+		SELECT * FROM aditivosContratos WHERE idAditivo = param_idAditivo;       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="atualizaSenha" id="Procedure-4f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "atualizaSenha"(param_idUsuario INT,
+													   param_senhaAnterior VARCHAR(30),
+                                                       param_senha VARCHAR(30))
+BEGIN
+
+	UPDATE usuarios
+	   SET senha     = SHA(param_senha)
+	 WHERE idUsuario = param_idUsuario AND
+		   senhaProvisoria = SHA(param_senhaAnterior);
+    
+	SELECT idUsuario
+ 	  FROM usuarios
+	 WHERE idUsuario = param_idUsuario
+       AND senha = SHA(param_senha);
+
+END]]></string>
+		</procedure>
+		<procedure name="autenticaUsuario" id="Procedure-2443" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "autenticaUsuario"(param_login VARCHAR(30), 
+                                                          param_senha VARCHAR(30))
+BEGIN
+    DECLARE idUsuarioAutenticado INTEGER;
+    
+    SELECT idUsuario 
+      INTO idUsuarioAutenticado
+      FROM usuarios 
+	 WHERE usuarios.ativo = 'S' 
+	   AND usuarios.login = param_login 
+	   AND usuarios.senha = SHA(param_senha);
+              
+	IF idUsuarioAutenticado IS NOT NULL THEN
+   
+		CALL createAuthCode(idUsuarioAutenticado);
+      
+		SELECT 	idUsuario,
+				colaborador, 
+				grupoAcesso, 
+				nomeUsuario, 
+				login, 
+				ativo, 
+				email, 
+				emailAlternativo, 
+				telefone1, 
+				telefone2, 
+				dataInicio, 
+				dataTermino
+		   FROM usuarios
+		  WHERE usuarios.ativo = 'S' 
+		    AND usuarios.login = param_login 
+		    AND usuarios.senha = SHA(param_senha);
+      
+     END IF;
+
+END]]></string>
+		</procedure>
+		<procedure name="bateriasAtualizar" id="Procedure-242b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "bateriasAtualizar"(param_idBateria INT,
+                                                           param_equipamentoCliente INT,
+													       param_tipo CHAR(1),
+													       param_capacidade VARCHAR(5),
+													       param_elemento VARCHAR(3),
+													       param_fornecimento VARCHAR(5))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE baterias 
+	   SET equipamentoCliente = param_equipamentoCliente,
+           tipo               = param_tipo,
+		   capacidade         = param_capacidade,
+		   elemento           = param_elemento,
+		   fornecimento       = param_fornecimento
+     WHERE idBateria = param_idBateria;	
+            
+			
+    IF rollback = FALSE THEN       
+		SELECT * FROM baterias WHERE idBateria = param_idBateria;       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="bateriasCriar" id="Procedure-bd1" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "bateriasCriar"(param_equipamentoCliente INT,
+													   param_tipo CHAR(1),
+													   param_capacidade VARCHAR(5),
+													   param_elemento VARCHAR(3),
+													   param_fornecimento VARCHAR(5))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+--	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO baterias (equipamentoCliente,
+						  tipo,
+						  capacidade,
+						  elemento,
+						  fornecimento)
+    VALUES (param_equipamentoCliente,
+			param_tipo,
+            param_capacidade,
+			param_elemento,
+			param_fornecimento);
+			
+    IF rollback = FALSE THEN       
+		SELECT * FROM baterias WHERE idBateria = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="bateriasExcluir" id="Procedure-c06" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "bateriasExcluir"(param_idBateria INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM baterias WHERE idBateria = param_idBateria;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idBateria, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="bateriasLer" id="Procedure-9f7" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "bateriasLer"(param_numeroBateria varchar(10))
+BEGIN
+	SELECT re.descricao as 'Produto Cliente',
+		   ef.codigoProdutoFornecedor as 'Cod. Fornecedor',
+		   fj.nome as 'Fornecedor',
+		   ec.*,
+		   ba.* 
+	  FROM baterias ba 
+		   inner join equipamentosClientes ec on ec.idEquipamentoCliente = ba.equipamentoCliente
+		   inner join recursos re on re.idRecurso = ec.equipamentoCliente 
+		   inner join equipamentosFornecedores ef on ef.idEquipamentoFornecedor = ec.equipamentoFornecedor
+		   inner join pessoasFJ fj on fj.idPessoaFJ = ef.fornecedor
+	 WHERE ec.numeroBateria LIKE CONCAT('%', IF(param_numeroBateria = '*', '', param_numeroBateria), '%')
+	 ORDER BY ec.numeroBateria;
+END]]></string>
+		</procedure>
+		<procedure name="candidatosCliente" id="Procedure-b95" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "candidatosCliente"(param_cliente INT)
+BEGIN
+   SELECT idPessoaFJ, nome
+     FROM pessoasFJ          
+    WHERE idPessoaFJ = param_cliente
+    ORDER BY nome;   
+END]]></string>
+		</procedure>
+		<procedure name="candidatosGrupoCodificacoes" id="Procedure-2016" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "candidatosGrupoCodificacoes"(param_idCodificacaoLista INT,
+																   param_descricao VARCHAR(100))
+BEGIN
+	WITH RECURSIVE cte_codificacoesListas(idCodificacaoLista, grupoCodificacaoLista, numero, descricao)
+	AS
+	(
+	   SELECT idCodificacaoLista, grupoCodificacaoLista, numero, descricao
+		 FROM codificacoesListas
+	   WHERE idCodificacaoLista = param_idCodificacaoLista
+
+	   UNION ALL
+
+	   SELECT l.idCodificacaoLista, l.grupoCodificacaoLista, l.numero, l.descricao
+		 FROM codificacoesListas l 
+			  INNER JOIN cte_codificacoesListas c ON l.grupoCodificacaoLista = c.idCodificacaoLista
+
+	)
+    select idCodificacaoLista, grupoCodificacaoLista, numero, descricao 
+      from codificacoesListas 
+     where idCodificacaoLista not in (select idCodificacaoLista from cte_codificacoesListas)
+       and descricao LIKE CONCAT('%', param_descricao, '%');
+
+END]]></string>
+		</procedure>
+		<procedure name="candidatosGrupoRecurso" id="Procedure-197b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "candidatosGrupoRecurso"(param_idRecurso INT,
+                                                                param_descricao VARCHAR(150))
+BEGIN
+	WITH RECURSIVE cte_recursos(idRecurso, grupoRecurso, numero, descricao)
+	AS
+	(
+	   SELECT idRecurso, grupoRecurso, numero, descricao
+		 FROM recursos
+	   WHERE idRecurso = param_idRecurso
+
+	   UNION ALL
+
+	   SELECT r.idRecurso, r.grupoRecurso, r.numero, r.descricao
+		 FROM recursos r 
+			  INNER JOIN cte_recursos c ON r.grupoRecurso = c.idRecurso
+
+	)
+    select idRecurso, grupoRecurso, numero, descricao 
+      from recursos 
+     where idRecurso not in (select idRecurso from cte_recursos)
+       and descricao LIKE CONCAT('%', param_descricao, '%');
+
+END]]></string>
+		</procedure>
+		<procedure name="cidadesAtualizar" id="Procedure-e36" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesAtualizar"(param_idCidade INT,
+														  param_Estado INT,
+													      param_nome VARCHAR(100),
+                                                          param_sigla VARCHAR(5))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE cidades    
+	   SET estado   = param_estado,
+           nome	    = param_nome,
+           sigla    = param_sigla
+ 	 WHERE idCidade = param_idCidade;
+
+	IF rollback = FALSE THEN
+       SELECT c.*, e.nome as nomeEstado
+         FROM cidades c
+              INNER JOIN estados e on e.idEstado = c.estado
+          WHERE c.idCidade = param_idCidade;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="cidadesCriar" id="Procedure-1493" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesCriar"(param_estado INT,
+                                                      param_nome VARCHAR(100),
+                                                      param_sigla VARCHAR(5))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO cidades (estado, nome, sigla)
+    VALUES (param_estado, param_nome, param_sigla);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM cidades WHERE idCidade = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="cidadesExcluir" id="Procedure-1b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesExcluir"(param_idCidade INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM cidades WHERE idCidade = param_idCidade;
+
+	IF rollback = FALSE THEN
+        SELECT param_idCidade AS idCidade, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="cidadesExisteSiglaNome" id="Procedure-12a8" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesExisteSiglaNome"(param_idCidade INT,
+                                                                param_nome VARCHAR(100),
+                                                                param_sigla VARCHAR(5))
+BEGIN
+   SELECT idCidade AS cidadeExistente
+     FROM cidades
+    WHERE idCidade <> param_idCidade     
+      AND IF(param_nome is not null, nome = param_nome, sigla = param_sigla)
+    ORDER BY idCidade;
+END]]></string>
+		</procedure>
+		<procedure name="cidadesLer" id="Procedure-18d7" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesLer"(param_nome VARCHAR(100))
+BEGIN
+   SELECT c.*, e.nome as nomeEstado
+     FROM cidades c
+          INNER JOIN estados e on e.idEstado = c.estado          
+    WHERE c.nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+    ORDER BY c.nome;
+END]]></string>
+		</procedure>
+		<procedure name="cidadesLerId" id="Procedure-2019" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesLerId"(param_idCidade INT)
+BEGIN
+   SELECT c.*, e.nome as nomeEstado
+     FROM cidades c
+          INNER JOIN estados e on e.idEstado = c.estado          
+    WHERE c.idCidade = param_idCidade;
+END]]></string>
+		</procedure>
+		<procedure name="cidadesLista" id="Procedure-2c5" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "cidadesLista"()
+BEGIN
+   SELECT idCidade, nome
+     FROM cidades
+    ORDER BY nome;
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesLerIdDescricao" id="Procedure-115d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesLerIdDescricao"(param_descricao VARCHAR(100))
+BEGIN
+   SELECT idCodificacaoLista, descricao 
+     FROM codificacoesListas
+    WHERE descricao LIKE CONCAT('%', param_descricao, '%');
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesListasAtualizar" id="Procedure-18dd" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesListasAtualizar"(param_idCodificacaoLista INT,
+																	 param_descricao VARCHAR(100),
+																	 param_numero VARCHAR(25),
+																	 param_grupoCodificacaoLista INT,
+																	 param_unidadeMedida INT,
+																	 param_codigoExterno VARCHAR(30))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE codificacoesListas 
+       SET descricao = param_descricao,
+		   numero = param_numero,
+		   grupoCodificacaoLista = param_grupoCodificacaoLista,
+		   unidadeMedida = param_unidadeMedida,
+           codigoExterno = param_codigoExterno
+     WHERE idCodificacaoLista = param_idCodificacaoLista;     
+
+    IF rollback = FALSE THEN       
+	   SELECT c.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo 
+		 FROM codificacoesListas c 
+			  INNER JOIN unidadesMedidas u on u.idUnidadeMedida = c.unidadeMedida
+              LEFT JOIN codificacoesListas g on g.idCodificacaoLista = c.grupoCodificacaoLista
+		WHERE c.idCodificacaoLista = param_idCodificacaoLista;
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesListasCriar" id="Procedure-203a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesListasCriar"(param_descricao VARCHAR(100),
+																 param_numero VARCHAR(25),
+																 param_grupoCodificacaoLista INT,
+																 param_unidadeMedida INT,
+																 param_codigoExterno VARCHAR(30))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO codificacoesListas (descricao,
+									numero,
+									grupoCodificacaoLista,
+						     		unidadeMedida,
+                                    codigoExterno)
+    VALUES (param_descricao,
+            param_numero,
+            param_grupoCodificacaoLista,
+            param_unidadeMedida,
+            param_codigoExterno);
+
+    IF rollback = FALSE THEN       
+	   SELECT c.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo 
+		 FROM codificacoesListas c 
+			  INNER JOIN unidadesMedidas u on u.idUnidadeMedida = c.unidadeMedida
+              LEFT JOIN codificacoesListas g on g.idCodificacaoLista = c.grupoCodificacaoLista
+		WHERE c.idCodificacaoLista = LAST_INSERT_ID();   
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesListasExcluir" id="Procedure-196f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesListasExcluir"(param_idCodificacaoLista INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM codificacoesListas WHERE idCodificacaoLista = param_idCodificacaoLista;
+
+	IF rollback = FALSE THEN
+        SELECT null AS idCodificacaoLista, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesListasLer" id="Procedure-d92" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesListasLer"(param_idCodificacaoLista INT)
+BEGIN
+   SELECT c.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo 
+     FROM codificacoesListas c 
+          LEFT JOIN unidadesMedidas u on u.idUnidadeMedida = c.unidadeMedida
+          LEFT JOIN codificacoesListas g on g.idCodificacaoLista = c.grupoCodificacaoLista
+    WHERE c.idCodificacaoLista = param_idCodificacaoLista; 
+END]]></string>
+		</procedure>
+		<procedure name="codificacoesListaserIdDescricao" id="Procedure-1168" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "codificacoesListaserIdDescricao"(param_descricao VARCHAR(100))
+BEGIN
+   SELECT idCodificacaoLista, descricao 
+     FROM codificacoesListas
+    WHERE descricao LIKE CONCAT('%', param_descricao, '%');
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresAtualizar" id="Procedure-1efd" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresAtualizar"(param_idColaborador INT,
+																param_pessoaFJ INT,
+                                                                param_nome VARCHAR(80),
+											  				    param_celular VARCHAR(20),
+                                                                param_matricula VARCHAR(10),
+                                                                param_cargo VARCHAR(20))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE colaboradores 
+       SET pessoaFJ  = param_pessoaFJ,
+           nome      = param_nome,
+           celular   = param_celular,
+           matricula = param_matricula,
+           cargo     = param_cargo
+     WHERE idColaborador = param_idColaborador;
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM colaboradores WHERE idColaborador = param_idColaborador;      
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresCelularUsado" id="Procedure-216c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresCelularUsado"(param_idColaborador INTEGER,
+                                                                   param_celular CHAR(20))
+BEGIN
+
+   -- retorna o primeiro colaborador com o mesmo celular usado com o idColaborador usado 
+   SELECT idColaborador, 
+          nome, 
+          celular
+    FROM colaboradores
+    WHERE celular = param_celular AND 
+          idColaborador <> param_idColaborador
+    ORDER BY nome
+    LIMIT 1;
+
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresCriar" id="Procedure-33c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresCriar"(param_pessoaFJ INT,
+                                                            param_nome VARCHAR(80),
+                                                            param_celular VARCHAR(20),
+                                                            param_matricula VARCHAR(10),
+                                                            param_cargo VARCHAR(20))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO colaboradores (pessoaFJ, nome, celular, matricula, cargo)
+    VALUES (param_pessoaFJ, param_nome, param_celular, param_matricula, param_cargo);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM colaboradores WHERE idColaborador = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresExcluir" id="Procedure-ed6" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresExcluir"(param_idColaborador INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM colaboradores WHERE idColaborador = param_idColaborador;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idColaborador, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresLer" id="Procedure-25b7" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresLer"(param_pessoaFJ INTEGER)
+BEGIN
+   SELECT * 
+    FROM colaboradores
+    WHERE pessoaFJ = param_pessoaFJ
+    ORDER BY nome;
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresLerPaginado" id="Procedure-1970" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresLerPaginado"(param_idCliente INTEGER, 
+                                                                  param_pagina SMALLINT, 
+                                                                  param_linhas SMALLINT)
+BEGIN
+
+   DECLARE offset SMALLINT;
+   SET offset = (param_pagina-1) * param_linhas;
+
+   SELECT idColaborador, 
+          nome, 
+          celular,
+          matricula,
+          cargo, 
+          pessoaFJ
+    FROM colaboradores
+    WHERE pessoaFJ = param_idCliente
+    ORDER BY nome
+    LIMIT param_linhas OFFSET offset;
+
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresListaIdNome" id="Procedure-38a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresListaIdNome"(param_nomeColaborador VARCHAR(80))
+BEGIN
+   SELECT idColaborador, nome
+     FROM colaboradores
+    WHERE nome LIKE CONCAT('%', IF(param_nomeColaborador = '*', '', param_nomeColaborador), '%')
+    ORDER BY nome;
+END]]></string>
+		</procedure>
+		<procedure name="colaboradoresMatriculaUsada" id="Procedure-1bce" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "colaboradoresMatriculaUsada"(param_idCliente INTEGER, 
+                                                                     param_idColaborador INTEGER,
+                                                                     param_matricula CHAR(10))
+BEGIN
+
+   -- retorna o primeiro colaborador com mesma matricula do idCOlaborador passado 
+   SELECT idColaborador, 
+          nome, 
+          matricula
+    FROM colaboradores
+    WHERE pessoaFJ = param_idCliente AND 
+          matricula = param_matricula AND 
+          idColaborador <> param_idColaborador
+    ORDER BY nome
+    LIMIT 1;
+
+END]]></string>
+		</procedure>
+		<procedure name="contratosAtualizar" id="Procedure-333" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "contratosAtualizar"(param_idContrato INT,
+															param_cliente INT,
+															param_numeroProposta VARCHAR(20),
+															param_numeroOrcamento VARCHAR(20),
+															param_numeroContrato VARCHAR(20),
+															param_dataInicio DATE,
+															param_dataTermino DATE,
+															param_valorContrato DECIMAL(9,2),
+															param_valorExecutado DECIMAL(9,2),
+															param_valorAditivado DECIMAL(9,2))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+	UPDATE contratos 
+	   SET cliente         = param_cliente,
+		   numeroProposta  = param_numeroProposta,
+		   numeroOrcamento = param_numeroOrcamento,
+		   numeroContrato  = param_numeroContrato,
+		   dataInicio      = param_dataInicio,
+		   dataTermino     = param_dataTermino,
+		   valorContrato   = param_valorContrato,
+		   valorExecutado  = param_valorExecutado,
+		   valorAditivado  = param_valorAditivado
+	 WHERE idContrato = param_idContrato;     
+
+  
+     IF rollback = FALSE THEN       
+	    SELECT c.*,
+			   p.nome AS nomeCliente
+          FROM contratos c
+			   INNER JOIN pessoasFJ p on p.idPessoaFJ = c.cliente
+         WHERE c.idContrato = param_idContrato;
+    ELSE
+        SELECT 500 AS code ;       
+    END IF;      
+    
+END]]></string>
+		</procedure>
+		<procedure name="contratosCriar" id="Procedure-10b3" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "contratosCriar"(param_cliente INT,
+														param_numeroProposta VARCHAR(20),
+                                                        param_numeroOrcamento VARCHAR(20),
+                                                        param_numeroContrato VARCHAR(20),
+														param_dataInicio DATE,
+														param_dataTermino DATE,
+														param_valorContrato DECIMAL(9,2),
+                                                        param_valorExecutado DECIMAL(9,2),
+                                                        param_valorAditivado DECIMAL(9,2))
+BEGIN
+
+	DECLARE erro INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET erro = TRUE;
+   
+ 	INSERT INTO contratos (cliente,
+						   numeroProposta,
+                           numeroOrcamento,
+                           numeroContrato,
+						   dataInicio,
+						   dataTermino,
+						   valorContrato,
+                           valorExecutado,
+                           valorAditivado)
+    VALUES (param_cliente,
+		    param_numeroProposta,
+            param_numeroOrcamento,
+            param_numeroContrato,
+			param_dataInicio,
+			param_dataTermino,
+			param_valorContrato,
+            param_valorExecutado,
+            param_valorAditivado);
+
+    IF erro = FALSE THEN       
+       SELECT c.*,
+			  p.nome AS nomeCliente
+         FROM contratos c
+		      INNER JOIN pessoasFJ p on p.idPessoaFJ = c.cliente
+        WHERE idContrato = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="contratosExcluir" id="Procedure-d3e" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "contratosExcluir"(param_idContrato INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM contratos WHERE idContrato = param_idContrato;
+
+	IF rollback = FALSE THEN
+		SELECT param_idContrato AS idContrato, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="contratosLer" id="Procedure-139f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "contratosLer"(param_numeroContrato VARCHAR(20))
+BEGIN
+   SELECT idContrato,
+          numeroContrato
+     FROM contratos
+    WHERE numeroContrato LIKE CONCAT('%', IF(param_numeroContrato = '*', '', param_numeroContrato), '%')
+    ORDER BY numeroContrato;
+END]]></string>
+		</procedure>
+		<procedure name="contratosLerId" id="Procedure-2474" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "contratosLerId"(param_idContrato INT)
+BEGIN
+   SELECT c.*,
+          p.nome AS nomeCliente
+     FROM contratos c
+          INNER JOIN pessoasFJ p on p.idPessoaFJ = c.cliente
+    WHERE c.idContrato = param_idContrato;
+
+END]]></string>
+		</procedure>
+		<procedure name="createAuthCode" id="Procedure-346" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "createAuthCode"(param_userId INT)
+BEGIN
+
+	DECLARE sixDigit CHAR(06);
+	DECLARE createDateTime DATETIME;
+
+	SET sixDigit = LPAD(FLOOR(RAND() * 999999.99), 6, '0');
+	SET createDateTime = NOW();
+
+	UPDATE authsLog 
+      SET  timedOut = 'Y'
+	WHERE userId = param_userId 
+      AND timedOut IS NULL;
+		
+	INSERT INTO authsLog
+ 	       (userId, genDateTime, sixDigitCode, attempts, lastAttempt, success, timedOut)
+	VALUES (param_userId, createDateTime, sixDigit, 0, NULL, NULL, NULL);  
+		
+	SELECT sixDigit, createDateTime;
+   
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosClientesAtualizar" id="Procedure-e1c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosClientesAtualizar"(param_idEquipamentoCliente INT,
+																	   param_cliente INT,	
+																	   param_equipamentoCliente INT,
+																	   param_equipamentoFornecedor INT,
+																	   param_numeroBateria VARCHAR(10),
+																	   param_fabricante VARCHAR(30),
+																	   param_serie VARCHAR(10),
+																	   param_modelo VARCHAR(10),
+																	   param_tag VARCHAR(10),
+																	   param_dataFabricacao DATE,
+																	   param_capacidade VARCHAR(5),
+																	   param_tensao VARCHAR(5),
+																	   param_potencia VARCHAR(5),
+																	   param_tensaoEntrada VARCHAR(5),
+																	   param_mesAnoFabricacao VARCHAR(6))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE equipamentosClientes 
+       SET cliente               = param_cliente,
+           equipamentoCliente    = param_equipamentoCliente,
+  		   equipamentoFornecedor = param_equipamentoFornecedor,
+		   numeroBateria         = param_numeroBateria,
+		   fabricante            = param_fabricante,
+		   serie                 = param_serie,
+		   modelo                = param_modelo,
+		   tag                   = param_tag,
+		   dataFabricacao        = param_dataFabricacao,
+		   capacidade            = param_capacidade,
+		   tensao                = param_tensao,
+		   potencia              = param_potencia,
+		   tensaoEntrada         = param_tensaoEntrada,
+		   mesAnoFabricacao      = param_mesAnoFabricacao
+     WHERE idEquipamentoCliente  = param_idEquipamentoCliente;	     
+       
+    IF rollback = FALSE THEN       
+		SELECT ec.*,
+               fj.nome AS nomeCliente,
+               re.descricao AS nomeEquipamentoCliente,
+               rx.descricao AS nomeEquipamentoFornecedor
+          FROM equipamentosClientes ec
+               inner join pessoasFJ fj on fj.idPessoaFJ = ec.cliente
+               inner join recursos re on re.idRecurso = ec.equipamentoCliente
+               left join recursos rx on rx.idRecurso = ec.equipamentoFornecedor               
+         WHERE idEquipamentoCliente = param_idEquipamentoCliente;       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosClientesCriar" id="Procedure-7be" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosClientesCriar"(param_cliente INT,
+                                                                   param_equipamentoCliente INT,
+																   param_equipamentoFornecedor INT,
+                                                                   param_numeroBateria VARCHAR(10),
+																   param_fabricante VARCHAR(30),
+													 		       param_serie VARCHAR(10),
+																   param_modelo VARCHAR(10),
+																   param_tag VARCHAR(10),
+																   param_dataFabricacao DATE,
+																   param_capacidade VARCHAR(5),
+																   param_tensao VARCHAR(5),
+																   param_potencia VARCHAR(5),
+																   param_tensaoEntrada VARCHAR(5),
+                                                                   param_mesAnoFabricacao VARCHAR(6))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+--	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO equipamentosClientes (cliente,
+									  equipamentoCliente,
+									  equipamentoFornecedor,
+									  numeroBateria,
+									  fabricante,
+									  serie,
+									  modelo,
+									  tag,
+									  dataFabricacao,
+									  capacidade,
+									  tensao,
+									  potencia,
+									  tensaoEntrada,
+									  mesAnoFabricacao)
+    VALUES (param_cliente,
+            param_equipamentoCliente,
+			param_equipamentoFornecedor,
+            param_numeroBateria,
+			param_fabricante,
+			param_serie,
+			param_modelo,
+			param_tag,
+			param_dataFabricacao,
+			param_capacidade,
+			param_tensao,
+			param_potencia,
+			param_tensaoEntrada,
+            param_mesAnoFabricacao);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM equipamentosClientes WHERE idEquipamentoCliente = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosClientesExcluir" id="Procedure-fb" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosClientesExcluir"(param_idEquipamentoCliente INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM equipamentosClientes WHERE idEquipamentoCliente = param_idEquipamentoCliente;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idEquipamentoCliente, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosClientesLer" id="Procedure-227a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosClientesLer"(param_idCliente INTEGER, 
+                                                                 param_numeroBateria VARCHAR(10))
+BEGIN
+SELECT re.descricao as 'Produto Cliente',
+       ef.descricao as 'Produto Fornecedor',
+       fj.nome as 'Cliente',
+       ec.* 
+  FROM equipamentosClientes ec
+       inner join recursos re on re.idRecurso = ec.equipamentoCliente 
+       inner join pessoasFJ fj on fj.idPessoaFJ = ec.cliente
+       left join recursos ef on ef.idRecurso = ec.equipamentoFornecedor
+ WHERE ec.cliente = param_idCliente 
+   AND ec.numeroBateria LIKE CONCAT('%', IF(param_numeroBateria = '*', '', param_numeroBateria), '%')
+ ORDER BY numeroBateria;
+
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosFornecedorLista" id="Procedure-2e4" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosFornecedorLista"(param_fornecedor INT)
+BEGIN
+	SELECT e.idEquipamentoFornecedor,
+		   e.equipamento,
+		   r.descricao AS nomeEquipamento
+	  FROM equipamentosFornecedores e
+		   INNER JOIN recursos r on r.idRecurso = e.equipamento
+	 WHERE e.fornecedor = param_fornecedor;
+     
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosFornecedoresAtualizar" id="Procedure-8c9" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosFornecedoresAtualizar"(param_idEquipamentoFornecedor INT,
+																	     param_equipamento INT,
+																	     param_fornecedor INT,
+																	     param_codigoProdutoFornecedor VARCHAR(20)																	   )
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE equipamentosFornecedores 
+       SET equipamento            = param_equipamento,
+  		   fornecedor              = param_fornecedor,
+		   codigoProdutoFornecedor = param_codigoProdutoFornecedor		  
+     WHERE idEquipamentoFornecedor  = param_idEquipamentoFornecedor;	     
+       
+    IF rollback = FALSE THEN       
+		SELECT * FROM equipamentosFornecedores WHERE idEquipamentoFornecedor  = param_idEquipamentoFornecedor;       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosFornecedoresCriar" id="Procedure-2413" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosFornecedoresCriar"(param_equipamento INT,
+																       param_fornecedor INT,
+                                                                       param_codigoProdutoFornecedor VARCHAR(20))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO equipamentosFornecedores (equipamento,
+									      fornecedor,
+									      codigoProdutoFornecedor)
+	VALUES (param_equipamento,
+			param_fornecedor,
+            param_codigoProdutoFornecedor);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM equipamentosFornecedores WHERE idEquipamentoFornecedor = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosFornecedoresExcluir" id="Procedure-1e9e" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosFornecedoresExcluir"(param_idEquipamentoFornecedor INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM equipamentosFornecedores WHERE idEquipamentoFornecedor = param_idEquipamentoFornecedor;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idEquipamentoFornecedor, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosFornecedoresLer" id="Procedure-42e" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosFornecedoresLer"(param_equipamento varchar(150))
+BEGIN
+	SELECT r.descricao as 'Material/Produto',
+		  r.numero as 'Numero',
+		  p.nome as 'Fornecedor',
+		  e.*
+	 FROM equipamentosFornecedores e
+		  inner join recursos r on r.idRecurso = e.equipamento
+		  inner join pessoasFJ p on p.idPessoaFJ = e.fornecedor
+    WHERE r.descricao LIKE CONCAT('%', IF(param_equipamento = '*', '', param_equipamento), '%')
+	ORDER BY r.descricao;
+END]]></string>
+		</procedure>
+		<procedure name="equipamentosSelecaoLista" id="Procedure-f9d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "equipamentosSelecaoLista"(param_fornecedor INT)
+BEGIN
+	SELECT IdRecurso,
+		   descricao 
+	  FROM recursos 
+	 WHERE grupoRecurso IS NOT NULL
+  --     AND tipo in ( )
+	   AND idRecurso NOT IN (SELECT equipamento 
+							   FROM equipamentosFornecedores
+							  WHERE fornecedor = param_fornecedor);
+                              
+END]]></string>
+		</procedure>
+		<procedure name="estadosAtualizar" id="Procedure-1845" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "estadosAtualizar"(param_idEstado INT,
+												 		  param_pais INT,
+													      param_nome VARCHAR(80),
+                                                          param_sigla VARCHAR(2))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE estados    
+	   SET pais  = param_pais,
+           nome	 = param_nome,
+           sigla = param_sigla
+ 	 WHERE idEstado = param_idEstado;
+
+	IF rollback = FALSE THEN
+       SELECT e.*, p.nome as nomePais
+         FROM estados e
+              INNER JOIN paises p on p.idPais = e.pais
+          WHERE e.idEstado = param_idEstado;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="estadosCriar" id="Procedure-2574" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "estadosCriar"(param_pais INT,
+                                                      param_nome VARCHAR(60),
+                                                      param_sigla VARCHAR(5))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO estados (pais, nome, sigla)
+    VALUES (param_pais, param_nome, param_sigla);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM estados WHERE idEstado = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="estadosExcluir" id="Procedure-610" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "estadosExcluir"(param_idEstado INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	
+
+	DELETE FROM estados WHERE idEstado = param_idEstado;
+
+	IF rollback = FALSE THEN
+		SELECT param_idEstado AS idEstado, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="estadosExisteSiglaNome" id="Procedure-1895" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "estadosExisteSiglaNome"(param_idEstado INT,
+                                                                param_nome VARCHAR(80),
+                                                                param_sigla VARCHAR(5))
+BEGIN
+   SELECT idEstado AS estadoExistente
+     FROM estados
+    WHERE idEstado <> param_idEstado     
+      AND IF(param_nome is not null, nome = param_nome, sigla = param_sigla)
+    ORDER BY idEstado;
+END]]></string>
+		</procedure>
+		<procedure name="estadosLer" id="Procedure-be9" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "estadosLer"(param_nome VARCHAR(80))
+BEGIN
+   SELECT e.*, p.nome as nomePais
+     FROM estados e
+          INNER JOIN paises p on p.idPais = e.pais
+    WHERE e.nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+    ORDER BY e.nome;
+    
+END]]></string>
+		</procedure>
+		<procedure name="gruposAcessosAtualizar" id="Procedure-1c11" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "gruposAcessosAtualizar"(param_idGrupoAcesso INT,
+															    param_nomeGrupo VARCHAR(45), 
+															    param_descricao VARCHAR(512))
+BEGIN
+
+	DECLARE rollback INT;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE grupoAcessos
+    SET nomeGrupo			= param_nomeGrupo,
+		descricao			= param_descricao
+        WHERE idGrupoAcesso	= param_idGrupoAcesso;
+   
+    IF @rollback THEN
+		SELECT NULL AS idGrupoAcesso, NULL AS nomeGrupo, NULL AS descricao;
+	ELSE
+		SELECT *
+          FROM grupoAcessos
+		 WHERE idGrupoAcesso = param_idGrupoAcesso;
+    END IF;
+    
+END]]></string>
+		</procedure>
+		<procedure name="gruposAcessosCriar" id="Procedure-10c9" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "gruposAcessosCriar"(param_nomeGrupo VARCHAR(45), 
+														    param_descricao VARCHAR(512))
+BEGIN
+
+   	DECLARE rollback INT; 
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+    INSERT INTO grupoAcessos(nomeGrupo, descricao) 
+    VALUES (param_nomeGrupo, param_descricao);
+    
+    IF @rollback THEN
+		SELECT NULL AS idGrupoAcesso, NULL AS nomeGrupo, NULL AS descricao, 500 AS code;
+	ELSE
+		SELECT *
+          FROM grupoAcessos
+		 WHERE idGrupoAcesso = novaIdGrupoAcesso;
+    END IF;
+    
+END]]></string>
+		</procedure>
+		<procedure name="gruposAcessosExcluir" id="Procedure-c6" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "gruposAcessosExcluir"(param_idGrupoAcesso INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM grupoAcessos WHERE idGrupoAcesso = param_idGrupoAcesso;
+
+	IF rollback = FALSE THEN
+        SELECT null AS idGrupoAcesso, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="gruposAcessosLer" id="Procedure-94d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "gruposAcessosLer"()
+BEGIN
+
+	SELECT idGrupoAcesso, nomeGrupo, descricao
+	  FROM grupoAcessos;
+
+END]]></string>
+		</procedure>
+		<procedure name="itensCoberturasContratosAtualizar" id="Procedure-54b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensCoberturasContratosAtualizar"(param_idItemCoberturaContrato INT,
+                                                                          param_localCliente INT,
+																	      param_contrato INT,
+																	      param_equipamentoCliente INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE itensCoberturasContratos 
+       SET localCliente       = param_localCliente,
+  		   contrato           = param_contrato,
+		   equipamentoCliente = param_equipamentoCliente		  
+     WHERE idItemCoberturaContrato  = param_idItemCoberturaContrato;	     
+       
+    IF rollback = FALSE THEN       
+		SELECT * FROM itensCoberturasContratos WHERE idItemCoberturaContrato  = param_idItemCoberturaContrato;     
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="itensCoberturasContratosCriar" id="Procedure-187d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensCoberturasContratosCriar"(param_localCliente INT,
+																	   param_contrato INT,
+																	   param_equipamentoCliente INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO itensCoberturasContratos (localCliente,
+										  contrato,
+							              equipamentoCliente)
+	VALUES (param_localCliente,
+			param_contrato,
+            param_equipamentoCliente);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM itensCoberturasContratos WHERE idItemCoberturaContrato = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+   
+END]]></string>
+		</procedure>
+		<procedure name="itensCoberturasContratosExcluir" id="Procedure-8a2" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensCoberturasContratosExcluir"(param_idItemCorbeturaContrato INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM itensCoberturasContratos WHERE idItemCorbeturaContrato = param_idItemCorbeturaContrato;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idItemCorbeturaContrato, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="itensCoberturasContratosLer" id="Procedure-339" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensCoberturasContratosLer"(param_numeroContrato varchar(20))
+BEGIN
+SELECT fj.nome as Cliente,
+       ct.numeroContrato as 'Nº Contrato',
+       lc.NomeLocal as 'Local dos Equipamentos',
+       re.descricao as Produto,
+       lc.geolocalizacao,
+       ic.* 
+  FROM itensCoberturasContratos ic
+       inner join locaisClientes lc on lc.idLocalCliente = ic.localCliente
+       inner join contratos ct on ct.idContrato = ic.contrato
+       inner join pessoasFJ fj on fj.idPessoaFJ = ct.cliente
+       inner join equipamentosClientes ec on ec.idEquipamentoCliente = ic.equipamentoCliente
+       inner join recursos re on re.idRecurso = ec.equipamentoCliente
+ WHERE ct.numeroContrato LIKE CONCAT('%', IF(param_numeroContrato = '*', '', param_NumeroContrato), '%')
+ ORDER BY ct.numeroContrato;
+
+END]]></string>
+		</procedure>
+		<procedure name="itensOrdensServicosAtualizar" id="Procedure-917" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensOrdensServicosAtualizar"(param_idItemOrdemServico INT,
+																      param_ordemServico INT,
+																      param_itemOS INT,
+													  	              param_localCliente INT,
+														              param_itemCoberturaContrato INT,
+									     							  param_recurso INT,
+                                                                      param_unidadeMedida INT,
+														              param_quantidade INT,
+                                                                      param_valorUnitario DECIMAL(9,2))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE itensOrdensServicos 
+       SET ordemServico          = param_ordemServico,
+		   itemOS                = param_itemOS,
+		   localCliente          = param_localCliente,
+		   itemCoberturaContrato = param_itemCoberturaContrato,
+		   recurso               = param_recurso,
+		   unidadeMedida         = param_unidadeMedida,
+		   quantidade            = param_quantidade,
+		   valorUnitario         = param_valorUnitario                                
+	 WHERE idItemOrdemServico    = param_idItemOrdemServico;
+            
+            
+    IF rollback = FALSE THEN       
+		SELECT * FROM itensOrdensServicos WHERE idItemOrdemServico = param_idItemOrdemServico;
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="itensOrdensServicosCriar" id="Procedure-25a1" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensOrdensServicosCriar"(param_ordemServico INT,
+													              param_itemOS INT,
+													  	          param_localCliente INT,
+														          param_itemCoberturaContrato INT,
+														          param_recurso INT,
+                                                                  param_unidadeMedida INT,
+														          param_quantidade INT,
+                                                                  param_valorUnitario DECIMAL(9,2))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+--	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO itensOrdensServicos (ordemServico,
+									 itemOS,
+									 localCliente,
+									 itemCoberturaContrato,
+									 recurso,
+									 unidadeMedida,
+									 quantidade,
+									 valorUnitario)                                
+	VALUES (param_ordemServico,
+			param_itemOS,
+			param_localCliente,
+			param_itemCoberturaContrato,
+			param_recurso,
+            param_unidadeMedida,
+            param_quantidade,
+            param_valorUnitario);
+            
+            
+    IF rollback = FALSE THEN       
+		SELECT * FROM itensOrdensServicos WHERE idItemOrdemServico = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="itensOrdensServicosExcluir" id="Procedure-15d0" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensOrdensServicosExcluir"(param_idItemOrdemServico INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM itensOrdensServicos WHERE idItemOrdemServico = param_idItemOrdemServico;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idItemOrdemServico, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="itensOrdensServicosLer" id="Procedure-220e" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "itensOrdensServicosLer"(param_numeroOrdemServico varchar(10))
+BEGIN
+SELECT os.numeroOrdemServico as 'Nº Ordem Servico',
+       lc.nomeLocal as Local,
+       re.descricao as Produto,
+       un.descricao as 'Unidade Medida',
+       un.sigla as 'UN',
+	   ios.* 
+  FROM itensOrdensServicos ios
+ 	   inner join ordensServicos os on os.idOrdemServico = ios.ordemServico
+       inner join recursos re on re.idRecurso = ios.recurso
+       inner join locaisClientes lc on lc.idLocalCliente = ios.localCliente
+       left join unidadesMedidas un on un.idUnidadeMedida = ios.unidadeMedida
+ WHERE os.numeroOrdemServico LIKE CONCAT('%', IF(param_numeroOrdemServico = '*', '', param_numeroOrdemServico), '%')
+ ORDER BY os.numeroOrdemServico;
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientePaginado" id="Procedure-1c79" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientePaginado"(param_idCliente INTEGER, 
+                                                               param_pagina SMALLINT, 
+                                                               param_linhas SMALLINT)
+BEGIN
+
+   DECLARE offset SMALLINT;
+   SET offset = (param_pagina-1) * param_linhas;
+
+   SELECT idLocalCliente, 
+          cliente, 
+          nomeLocal, 
+          geolocalizacao
+    FROM locaisClientes 
+    WHERE cliente = param_idCliente
+    ORDER BY nomeLocal
+    LIMIT param_linhas OFFSET offset;
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientesAtualizar" id="Procedure-1c6f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientesAtualizar"(param_idLocalCliente INT,
+															     param_cliente INT,
+															     param_nomeLocal  VARCHAR(40),
+															     param_geolocalizacao VARCHAR(30))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE locaisClientes 
+       SET cliente        = param_cliente,
+  		   nomeLocal      = param_nomeLocal,
+		   geolocalizacao = param_geolocalizacao		  
+     WHERE idLocalCliente = param_idLocalCliente;	     
+       
+    IF rollback = FALSE THEN       
+		SELECT l.*, p.nome as nomeCliente 
+          FROM locaisClientes l
+               INNER JOIN pessoasFJ p on p.idPessoaFJ = l.cliente
+         WHERE idLocalCliente = param_idLocalCliente;     
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientesCriar" id="Procedure-a3a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientesCriar"(param_cliente INT,
+														   param_nomeLocal VARCHAR(40),
+                                                           param_geolocalizacao VARCHAR(30))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO locaisClientes (cliente,
+							    nomeLocal,
+							    geolocalizacao)
+	VALUES (param_cliente,
+			param_nomeLocal,
+            param_geolocalizacao);
+
+    IF rollback = FALSE THEN       
+	    SELECT l.*, p.nome as nomeCliente 
+          FROM locaisClientes l
+               INNER JOIN pessoasFJ p on p.idPessoaFJ = l.cliente
+         WHERE idLocalCliente = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+   
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientesExcluir" id="Procedure-fd" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientesExcluir"(param_idLocalCliente INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM locaisClientes WHERE idLocalCliente = param_idLocalCliente;
+
+	IF rollback = FALSE THEN
+		SELECT param_idLocalCliente AS idLocalCliente, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientesLer" id="Procedure-2635" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientesLer"(param_cliente int,
+                                                           param_nomeLocal varchar(40))
+BEGIN
+
+SELECT idLocalCliente, nomeLocal
+  FROM locaisClientes
+ WHERE cliente = param_cliente
+   AND nomeLocal LIKE CONCAT('%', IF((param_nomeLocal = '*' or param_nomeLocal = ''), '', param_nomeLocal), '%')
+ ORDER BY nomeLocal;
+ 
+END]]></string>
+		</procedure>
+		<procedure name="locaisClientesLerDados" id="Procedure-134f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "locaisClientesLerDados"(param_cliente int,
+                                                                param_nomeLocal VARCHAR(40))
+BEGIN
+
+SELECT p.nome as 'nomeCliente',
+       l.*
+  FROM locaisClientes l
+       inner join pessoasFJ p on p.idPessoaFJ = l.cliente 
+ WHERE l.cliente = param_cliente
+   AND l.nomeLocal = param_nomeLocal; 
+  
+END]]></string>
+		</procedure>
+		<procedure name="opcoesMenusAtualizar" id="Procedure-22c4" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "opcoesMenusAtualizar"(param_idOpcaoMenu    INT,
+															  param_grupoOpcaoMenu INT,
+															  param_rotulo	       VARCHAR(45), 
+															  param_descricao 	   VARCHAR(512),
+															  param_endpoint	   VARCHAR(45),
+															  param_icone 		   VARCHAR(45),
+															  param_ordem          INT,
+                                                              param_numero         VARCHAR(10),
+															  param_listaGrupos    VARCHAR(512))
+BEGIN
+
+  	DECLARE partString VARCHAR(512);
+    DECLARE commaPos SMALLINT;
+    DECLARE id INTEGER;
+    
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	START TRANSACTION;
+    
+    DELETE FROM permissoesAcesso WHERE idOpcaoMenu = param_idOpcaoMenu;
+    
+    UPDATE opcoesMenu 
+      SET grupoOpcaoMenu = param_grupoOpcaoMenu,
+          rotulo 		 = param_rotulo, 
+		  descricao 	 = param_descricao,  
+          endpoint 		 = param_endpoint, 
+          icone 		 = param_icone,
+          ordem          = param_ordem,
+          numero         = param_numero
+	WHERE idOpcaoMenu 	 = param_idOpcaoMenu;
+    
+    IF param_listaGrupos <> '' THEN
+		SET partString = CONCAT(REGEXP_REPLACE(param_listaGrupos, ' ', ''), ',');
+		SET commaPos = REGEXP_INSTR(partString, '\,');
+		WHILE commaPos > 0 DO
+			IF commaPos > 0 THEN
+				SET id = CONVERT(SUBSTRING(partString, 1, commaPos-1), UNSIGNED);            
+                
+                INSERT INTO permissoesAcesso (grupoAcesso, idOpcaoMenu, ordem) VALUES (id, param_idOpcaoMenu, 1);              
+                                            
+				SET partString 	= SUBSTRING(partString, commaPos+1);
+				SET commaPos = REGEXP_INSTR(partString, '\,');
+			END IF;
+		END WHILE;
+    END IF;
+
+	IF rollback = FALSE THEN
+        COMMIT;
+		SELECT param_idOpcaoMenu AS idOpcaoMenu, param_grupoOpcaoMenu AS grupoOpcaoMenu,  param_rotulo AS rotulo, param_descricao AS descricao, 
+               param_endpoint AS endpoint, param_icone AS icone, param_ordem as ordem, param_numero as numero, param_listaGrupos as listaGrupos;
+    ELSE
+        ROLLBACK;
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="opcoesMenusCriar" id="Procedure-986" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "opcoesMenusCriar"( param_grupoOpcaoMenu INT,
+													       param_rotulo	VARCHAR(45), 
+														   param_descricao VARCHAR(512),
+														   param_endpoint	VARCHAR(45), 
+														   param_icone 	VARCHAR(45),
+														   param_ordem INT,
+                                                           param_numero VARCHAR(10),
+														   param_listaGrupos VARCHAR(512))
+BEGIN
+
+  	DECLARE partString VARCHAR(512);
+    DECLARE commaPos SMALLINT;
+    DECLARE id INTEGER;
+    DECLARE idOpcaoMenu INTEGER;
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+    
+	START TRANSACTION;
+    
+    INSERT INTO opcoesMenu (grupoOpcaoMenu, rotulo, descricao, endpoint, icone )
+    VALUES (param_grupoOpcaoMenu, param_rotulo, param_descricao, param_endpoint, param_icone);
+    
+    set idOpcaoMenu = LAST_INSERT_ID();
+    
+    IF param_listaGrupos <> '' THEN
+		SET partString = CONCAT(REGEXP_REPLACE(param_listaGrupos, ' ', ''), ',');
+		SET commaPos = REGEXP_INSTR(partString, '\,');
+		WHILE commaPos > 0 DO
+			IF commaPos > 0 THEN
+				SET id = CONVERT(SUBSTRING(partString, 1, commaPos-1), UNSIGNED);            
+                
+                INSERT INTO permissoesAcesso (grupoAcesso, idOpcaoMenu, ordem) VALUES (id, idOpcaoMenu, 1);
+
+				SET partString 	= SUBSTRING(partString, commaPos+1);
+				SET commaPos = REGEXP_INSTR(partString, '\,');
+			END IF;
+		END WHILE;
+    END IF;
+
+    IF rollback = FALSE THEN
+        COMMIT;
+		SELECT LAST_INSERT_ID() AS idOpcaoMenu, param_grupoOpcaoMenu as grupoOpcaoMenu, param_rotulo AS rotulo, param_descricao AS descricao, 
+               param_endpoint AS endpoint, param_icone AS icone, param_ordem as ordem, param_listaGrupos as listaGrupos;
+    ELSE
+        ROLLBACK;
+		SELECT 500 AS code;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="opcoesMenusExcluir" id="Procedure-240e" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "opcoesMenusExcluir"(param_idOpcaoMenu INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+    
+  	START TRANSACTION;
+   
+    DELETE FROM permissoesAcesso WHERE idOpcaoMenu = param_idOpcaoMenu;
+    DELETE FROM opcoesMenu WHERE idOpcaoMenu = param_idOpcaoMenu;
+
+    IF rollback = FALSE THEN
+        COMMIT;
+		SELECT null AS idOpcaoMenu, 200 AS code;
+    ELSE
+        ROLLBACK;
+		SELECT 500 AS code;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="opcoesMenusLer" id="Procedure-17ac" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "opcoesMenusLer"()
+BEGIN
+
+    DECLARE var_idOpcaoMenu INTEGER;
+    DECLARE var_grupoOpcaoMenu INTEGER;   
+    DECLARE var_rotulo VARCHAR(45);
+    DECLARE var_descricao VARCHAR(512);
+    DECLARE var_endpoint VARCHAR(45);
+    DECLARE var_icone VARCHAR(45);
+    DECLARE var_ordem INTEGER;
+    DECLARE var_numero VARCHAR(10);
+    DECLARE var_listaGrupos VARCHAR(512);
+    
+    DECLARE var_idPermissaoAcesso INT;
+    DECLARE var_opcaoMenu INT;
+    DECLARE var_grupoAcesso INT;
+    DECLARE var_ordemPermissao INT;
+    
+    DECLARE var_fimCursor INTEGER DEFAULT 0;
+
+    DECLARE curOpcoesMenu
+        CURSOR FOR
+            SELECT idOpcaoMenu, grupoOpcaoMenu, rotulo, descricao, endpoint, icone, ordem, numero
+              FROM opcoesMenu; 
+    
+	DECLARE curListaGrupos
+		CURSOR FOR 
+			SELECT idPermissaoAcesso, grupoAcesso, ordem
+              FROM permissoesAcesso 
+             WHERE idOpcaoMenu = var_idOpcaoMenu;
+
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET var_fimCursor = 1;
+
+    DROP TEMPORARY TABLE IF EXISTS auxOpcoesMenu;
+    
+    CREATE TEMPORARY TABLE  IF NOT EXISTS auxOpcoesMenu (
+         idOpcaoMenu INTEGER,
+         grupoOpcaoMenu INTEGER,   
+         rotulo VARCHAR(45),
+         descricao VARCHAR(512),
+         endpoint VARCHAR(45),
+         icone VARCHAR(45),
+         ordem INTEGER,
+         numero VARCHAR(10),
+         listaGrupos VARCHAR(512),
+		 PRIMARY KEY ("idOpcaoMenu") );
+
+    
+	OPEN curOpcoesMenu;
+	getMenu: 
+    LOOP
+		FETCH curOpcoesMenu INTO var_idOpcaoMenu, var_grupoOpcaoMenu, var_rotulo, var_descricao, var_endpoint, var_icone, var_ordem, var_numero;        
+		IF var_fimCursor = 1 THEN 
+			LEAVE getMenu;
+		END IF;
+        
+            SET  var_listaGrupos = '';
+        
+            OPEN curListaGrupos;
+		    getPermissaoAcesso: 
+            LOOP
+               FETCH curListaGrupos INTO var_idPermissaoAcesso, var_grupoAcesso, var_ordem;
+		       IF var_fimCursor = 1 THEN 
+			      LEAVE getPermissaoAcesso;
+		       END IF;            
+                   
+               SET var_listaGrupos =  CONCAT(var_listaGrupos, var_grupoAcesso,  ',');	
+                   
+             END LOOP getPermissaoAcesso;     
+             
+             INSERT INTO auxOpcoesMenu (idOpcaoMenu, grupoOpcaoMenu, rotulo, descricao, endpoint, icone, ordem, numero, listaGrupos)
+             VALUES (var_idOpcaoMenu, var_grupoOpcaoMenu, var_rotulo, var_descricao, var_endpoint, var_icone, var_ordem, var_numero, REGEXP_REPLACE(var_listaGrupos,'\,$', '') );
+             
+             SET var_fimCursor = 0;
+
+             CLOSE curListaGrupos;
+	END LOOP getMenu;
+    CLOSE curOpcoesMenu;
+
+	SELECT idOpcaoMenu, grupoOpcaoMenu, rotulo, descricao, endpoint, icone, ordem, numero, listaGrupos
+      FROM auxOpcoesMenu 
+     ORDER BY rotulo;  
+     
+	SELECT * FROM permissoesAcesso
+    ORDER BY idOpcaoMenu;
+
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicoIdContrato" id="Procedure-2233" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicoIdContrato"(param_cliente INTEGER,
+															   param_contrato INTEGER)
+BEGIN
+	SELECT idContrato,
+           numeroContrato
+	  FROM contratos 
+     WHERE cliente = param_cliente
+       AND dataTermino <= CURDATE()
+     ORDER BY numeroContrato;
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicoNumeroContrato" id="Procedure-21c3" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicoNumeroContrato"(param_cliente INTEGER,
+															         param_numeroContrato VARCHAR(20))
+BEGIN
+	SELECT idContrato AS contrato,
+           numeroContrato
+	  FROM contratos 
+     WHERE cliente = param_cliente
+       AND numeroContrato LIKE CONCAT('%', IF(param_numeroContrato = '*', '', param_numeroContrato), '%') 
+  --     AND dataTermino <= CURDATE()
+     ORDER BY numeroContrato;
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicosAtualizar" id="Procedure-1736" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicosAtualizar"(param_idOrdemServico INT,
+															    param_contrato INT,
+															    param_status INT,
+													  	        param_numeroOrdemServico VARCHAR(10),
+														        param_dataSolicitacao DATE,
+														        param_dataValidadeOrcamento DATE,
+														        param_dataFechamentoOS DATE,
+                                                                param_dataEncerramento DATE,
+                                                                param_valorTotal DECIMAL(9,2),
+                                                                param_colaboradorAutorizouOS INT,
+                                                                param_dataAutorizacaoOS DATE,
+                                                                param_observacao VARCHAR(500),
+                                                                param_codigoExterno VARCHAR(30),
+                                                                param_cliente INT)
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE ordensServicos 
+       SET contrato               = param_contrato,
+		   status                 = param_status,
+		   numeroOrdemServico     = param_numeroOrdemServico,
+		   dataSolicitacao        = param_dataSolicitacao,
+		   dataValidadeOrcamento  = param_dataValidadeOrcamento,
+		   dataFechamentoOS       = param_dataFechamentoOS,
+		   dataEncerramento       = param_dataEncerramento,
+		   valorTotal             = param_valorTotal,
+		   colaboradorAutorizouOS = param_colaboradorAutorizouOS,
+		   dataAutorizacaoOS      = param_dataAutorizacaoOS,
+           observacao             = param_observacao,
+           codigoExterno          = param_codigoExterno,
+           cliente				  = param_cliente
+     WHERE idOrdemServico = param_idOrdemServico;
+ 
+ 
+    IF rollback = FALSE THEN       
+		SELECT os.*, 
+			   ct.numeroContrato,
+               cl.nome AS nomeCliente,
+			   cb.nome AS nomeColaboradorAutorizouOS
+          FROM ordensServicos os
+               LEFT JOIN contratos ct on ct.idContrato = os.contrato
+               INNER JOIN pessoasFJ cl on cl.idPessoaFJ = os.cliente
+			   LEFT JOIN colaboradores cb on cb.idColaborador = os.colaboradorAutorizouOS
+		 WHERE os.idOrdemServico = param_idOrdemServico;       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicosCriar" id="Procedure-1f07" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicosCriar"(param_contrato INT,
+													        param_status INT,
+													  	    param_numeroOrdemServico VARCHAR(10),
+														    param_dataSolicitacao DATE,
+														    param_dataValidadeOrcamento DATE,
+														    param_dataFechamentoOS DATE,
+                                                            param_dataEncerramento DATE,
+                                                            param_valorTotal DECIMAL(9,2),
+                                                            param_colaboradorAutorizouOS INT,
+                                                            param_dataAutorizacaoOS DATE,
+                                                            param_observacao VARCHAR(500),
+															param_codigoExterno VARCHAR(30),
+                                                            param_cliente INT)
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+ 	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO ordensServicos (contrato,
+								status,
+								numeroOrdemServico,
+								dataSolicitacao,
+								dataValidadeOrcamento,
+								dataFechamentoOS,
+								dataEncerramento,
+								valorTotal,
+								colaboradorAutorizouOS,
+								dataAutorizacaoOS,
+                                observacao,
+                                codigoExterno,
+                                cliente)
+	VALUES (param_contrato,
+			param_status,
+			param_numeroOrdemServico,
+			param_dataSolicitacao,
+			param_dataValidadeOrcamento,
+			param_dataFechamentoOS,
+            param_dataEncerramento,
+            param_valorTotal,
+            param_colaboradorAutorizouOS,
+            param_dataAutorizacaoOS,
+            param_observacao,
+            param_codigoExterno,
+            param_cliente);
+            
+            
+    IF rollback = FALSE THEN       
+		SELECT os.*, 
+			   ct.numeroContrato,
+               cl.nome AS nomeCliente,
+			   cb.nome AS nomeColaboradorAutorizouOS
+          FROM ordensServicos os
+               LEFT JOIN contratos ct on ct.idContrato = os.contrato
+               INNER JOIN pessoasFJ cl on cl.idPessoaFJ = os.cliente
+               LEFT JOIN colaboradores cb on cb.idColaborador = os.colaboradorAutorizouOS
+		 WHERE os.idOrdemServico = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicosExcluir" id="Procedure-2580" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicosExcluir"(param_idOrdemServico INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM ordensServicos WHERE idOrdemServico = param_idOrdemServico;
+
+	IF rollback = FALSE THEN
+		SELECT param_idOrdemServico AS idOrdemServico, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicosLer" id="Procedure-a6b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicosLer"(param_numeroOrdemServico VARCHAR(10))
+BEGIN
+	SELECT idOrdemServico,
+           numeroOrdemServico		   
+	  FROM ordensServicos 
+     WHERE numeroOrdemServico LIKE CONCAT('%', IF(param_numeroOrdemServico = '*', '', param_numeroOrdemServico), '%')
+     ORDER BY numeroOrdemServico;
+END]]></string>
+		</procedure>
+		<procedure name="ordensServicosLerId" id="Procedure-2442" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "ordensServicosLerId"(param_idOrdemServico INT)
+BEGIN
+	SELECT os.*, 
+		   ct.numeroContrato,
+		   cl.nome AS nomeCliente,
+		   cb.nome AS nomeColaboradorAutorizouOS
+	  FROM ordensServicos os
+		   LEFT JOIN contratos ct on ct.idContrato = os.contrato
+		   INNER JOIN pessoasFJ cl on cl.idPessoaFJ = os.cliente
+		   LEFT JOIN colaboradores cb on cb.idColaborador = os.colaboradorAutorizouOS
+     WHERE os.idOrdemServico = param_idOrdemServico;
+     
+END]]></string>
+		</procedure>
+		<procedure name="paisesAtualizar" id="Procedure-204a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "paisesAtualizar"(param_idPais INT,
+													     param_nome VARCHAR(60))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE paises 
+	   SET nome	= param_nome
+ 	 WHERE idPais = param_idPais;
+
+	IF rollback = FALSE THEN
+		SELECT * FROM paises WHERE idPais = param_idPais;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="paisesCriar" id="Procedure-70f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "paisesCriar"( param_nome VARCHAR(60) )
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO paises (nome)
+    VALUES (param_nome);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM paises WHERE idPais = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="paisesExcluir" id="Procedure-8c2" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "paisesExcluir"(param_idPais INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM paises WHERE idPais = param_idPais;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idPais, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="paisesLer" id="Procedure-11c8" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "paisesLer"(param_nome VARCHAR(60))
+BEGIN
+   SELECT * 
+     FROM paises
+    WHERE nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+    ORDER BY nome;
+END]]></string>
+		</procedure>
+		<procedure name="permissoesAcessoCriar" id="Procedure-22d1" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "permissoesAcessoCriar"(param_grupoAcesso INT, 
+													           param_opcaoMenu INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO permissoesAcesso (grupoAcesso, opcaoMenu)
+    VALUES (param_grupoAcesso, param_opcaoMenu);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM permissoesAcesso WHERE idPermissaoAcesso = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="permissoesAcessoExcluir" id="Procedure-2640" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "permissoesAcessoExcluir"(param_idPermissaoAcesso INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM permissoesAcesso WHERE idPermissaoAcesso = param_idPermissaoAcesso;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idPermissaoAcesso, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="permissoesAcessoLer" id="Procedure-1a18" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "permissoesAcessoLer"()
+BEGIN
+
+	SELECT * 
+      FROM permissoesAcesso pa
+           LEFT JOIN grupoAcessos ga ON (pa.opcaoMenu = ga.idGrupoAcesso)
+           LEFT JOIN opcoesMenu om ON (pa.opcaoMenu = om.idOpcaoMenu)
+	 ORDER BY pa.grupoAcesso;
+
+END]]></string>
+		</procedure>
+		<procedure name="permissoesAcessosAtualizar" id="Procedure-1bad" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "permissoesAcessosAtualizar"(param_idPermissaoAcesso INT,
+                                                                    param_grupoAcesso INT, 
+													                param_opcaoMenu INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE permissoesAcesso
+	   SET grupoAcesso	= param_grupoAcesso,
+           opcaoMenu    = param_opcaoMenu
+ 	 WHERE idPermissaoAcesso = param_idPermissaoAcesso;
+
+	IF rollback = FALSE THEN
+		SELECT * FROM permissoesAcesso WHERE idPermissaoAcesso = param_idPermissaoAcesso;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJAtualizar" id="Procedure-e8" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJAtualizar"(param_idPessoaFJ INT,
+                                                            param_nome VARCHAR(100),
+                                                            param_apelido VARCHAR(40),
+                                                            param_tipoFJ CHAR(1),
+                                                            param_email VARCHAR(100),
+                                                            param_logradouro VARCHAR(100),
+                                                            param_numero VARCHAR(6),
+                                                            param_complemento VARCHAR(40),
+                                                            param_cep VARCHAR(8),
+                                                            param_bairro VARCHAR(30),
+                                                            param_cidade INT,
+                                                            param_georeferenciamento VARCHAR(40),
+                                                            param_telefone1 VARCHAR(20),
+                                                            param_telefone2 VARCHAR(20),
+                                                            param_cnpj VARCHAR(15),
+                                                            param_inscricaoEstadual VARCHAR(15),
+                                                            param_inscricaoMunicipal VARCHAR(15),
+                                                            param_contato VARCHAR(60),
+                                                            param_telefoneContato VARCHAR(20),
+                                                            param_emailContato VARCHAR(80),
+                                                            param_ativo CHAR(1),
+                                                            param_identidade VARCHAR(10),
+                                                            param_cpf VARCHAR(11),
+                                                            param_sexo CHAR(1),
+                                                            param_dataNascimento DATE,
+                                                            param_codigoExterno VARCHAR(30))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE pessoasFJ 
+       SET nome               = param_nome,
+           apelido            = param_apelido,
+		   tipoFJ             = param_tipoFJ,
+		   email              = param_email,
+		   logradouro         = param_logradouro,
+		   numero             = param_numero,
+		   complemento        = param_complemento,
+		   cep                = param_cep,
+		   bairro             = param_bairro,
+		   cidade             = param_cidade,
+		   georeferenciamento = param_georeferenciamento,
+		   telefone1          = param_telefone1,
+		   telefone2          = param_telefone2,
+		   cnpj               = param_cnpj,
+		   inscricaoEstadual  = param_inscricaoEstadual,
+		   inscricaoMunicipal = param_inscricaoMunicipal,
+		   contato            = param_contato,
+		   telefoneContato    = param_telefoneContato,
+		   emailContato       = param_emailContato,
+		   ativo              = param_ativo,
+		   identidade         = param_identidade,
+		   cpf                = param_cpf,
+		   sexo               = param_sexo,	
+		   dataNascimento     = param_dataNascimento,
+		   codigoExterno      = param_codigoExterno  
+	 WHERE idPessoaFJ = param_idPessoaFJ;                   
+                     
+    IF rollback = FALSE THEN       
+		  SELECT fj.*, c.nome AS nomeCidade 
+            FROM pessoasFJ AS fj 
+                 LEFT JOIN cidades AS c ON (fj.cidade = c.idCidade)  
+          WHERE fj.idPessoaFJ = param_idPessoaFJ;
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJCriar" id="Procedure-2539" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJCriar"(param_nome VARCHAR(100),
+                                                        param_apelido VARCHAR(40),
+                                                        param_tipoFJ CHAR(1),
+                                                        param_email VARCHAR(100),
+                                                        param_logradouro VARCHAR(100),
+                                                        param_numero VARCHAR(6),
+                                                        param_complemento VARCHAR(40),
+                                                        param_cep VARCHAR(8),
+                                                        param_bairro VARCHAR(30),
+                                                        param_cidade INT,
+                                                        param_georeferenciamento VARCHAR(40),
+                                                        param_telefone1 VARCHAR(20),
+                                                        param_telefone2 VARCHAR(20),
+                                                        param_cnpj VARCHAR(15),
+                                                        param_inscricaoEstadual VARCHAR(15),
+                                                        param_inscricaoMunicipal VARCHAR(15),
+                                                        param_contato VARCHAR(60),
+                                                        param_telefoneContato VARCHAR(20),
+                                                        param_emailContato VARCHAR(80),
+                                                        param_ativo CHAR(1),
+                                                        param_identidade VARCHAR(10),
+                                                        param_cpf VARCHAR(11),
+                                                        param_sexo CHAR(1),
+                                                        param_dataNascimento DATE,
+                                                        param_codigoExterno VARCHAR(30))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+
+   
+ 	INSERT INTO pessoasFJ ( nome,
+                            apelido,
+						    tipoFJ,
+						    email,
+							logradouro,
+							numero,
+							complemento,
+							cep,
+							bairro,
+							cidade,
+							georeferenciamento,
+							telefone1,
+							telefone2,
+							cnpj,
+							inscricaoEstadual,
+							inscricaoMunicipal,
+							contato,
+							telefoneContato,
+							emailContato,
+							ativo,
+							identidade,
+							cpf,
+							sexo,
+							dataNascimento,
+							codigoExterno )
+    VALUES (param_nome,
+            param_apelido,
+            param_tipoFJ,
+            param_email,
+            param_logradouro,
+            param_numero,
+			param_complemento,
+            param_cep,
+            param_bairro,
+            param_cidade,
+            param_georeferenciamento,
+            param_telefone1,
+            param_telefone2,
+            param_cnpj,
+            param_inscricaoEstadual,
+            param_inscricaoMunicipal,
+            param_contato,
+            param_telefoneContato,
+            param_emailContato,
+            param_ativo,
+            param_identidade,
+            param_cpf,
+            param_sexo,
+            param_dataNascimento,
+            param_codigoExterno);
+
+    IF rollback = FALSE THEN       
+        SELECT fj.*, c.nome AS nomeCidade 
+          FROM pessoasFJ AS fj 
+               LEFT JOIN cidades AS c ON (fj.cidade = c.idCidade)  
+         WHERE fj.idPessoaFJ = LAST_INSERT_ID();
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJExcluir" id="Procedure-7b2" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJExcluir"(param_idPessoaFJ INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM pessoasFJ WHERE idPessoaFJ = param_idPessoaFJ;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idPessoaFJ, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJLer" id="Procedure-1f6" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJLer"(param_nome VARCHAR(100))
+BEGIN
+   SELECT fj.*, c.nome AS nomeCidade 
+     FROM pessoasFJ AS fj 
+          LEFT JOIN cidades AS c ON (fj.cidade = c.idCidade)  
+    WHERE fj.nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+    ORDER BY fj.nome;
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJLerId" id="Procedure-9b6" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJLerId"(param_idPessoaFJ INTEGER)
+BEGIN
+   SELECT fj.*, c.nome AS nomeCidade 
+     FROM pessoasFJ AS fj 
+     LEFT JOIN cidades AS c ON (fj.cidade = c.idCidade)  
+    WHERE fj.idPessoaFJ = param_idPessoaFJ;
+END]]></string>
+		</procedure>
+		<procedure name="pessoasFJLerListaNomes" id="Procedure-1d13" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasFJLerListaNomes"(param_nome VARCHAR(100))
+BEGIN
+   SELECT fj.idPessoaFJ, 
+          fj.nome  
+     FROM pessoasFJ AS fj 
+    WHERE fj.nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+    ORDER BY fj.nome;
+END]]></string>
+		</procedure>
+		<procedure name="pessoasJuridicasLista" id="Procedure-1f6c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "pessoasJuridicasLista"(param_nome VARCHAR(100))
+BEGIN
+   SELECT fj.idPessoaFJ, fj.nome  
+     FROM pessoasFJ AS fj 
+    WHERE fj.nome LIKE CONCAT('%', IF(param_nome = '*', '', param_nome), '%')
+      AND fj.tipoFJ = 'J'
+    ORDER BY fj.nome;
+END]]></string>
+		</procedure>
+		<procedure name="recursosAtualizar" id="Procedure-25dd" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "recursosAtualizar"(param_idRecurso INT,
+                                                           param_descricao VARCHAR(150),
+														   param_numero VARCHAR(25),
+														   param_grupoRecurso INT,
+														   param_tipo INT,
+														   param_nivel INT,
+														   param_versao VARCHAR(15),
+                                                           param_atributo TEXT,
+                                                           param_template INT,
+                                                           param_formMagnetto INT,
+                                                           param_ativo CHAR(1),
+                                                           param_unidadeMedida INT,
+                                                           param_codigoExterno VARCHAR(30))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	-- DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	UPDATE recursos
+       SET descricao     = param_descricao,
+		   numero        = param_numero,
+		   grupoRecurso  = param_grupoRecurso,
+		   tipo          = param_tipo,
+		   nivel         = param_nivel,
+		   versao        = param_versao,
+		   atributo      = param_atributo,
+		   template      = param_template,
+		   formMagnetto  = param_formMagnetto,
+		   ativo         = param_ativo,
+		   unidadeMedida = param_unidadeMedida,
+           codigoExterno = param_codigoExterno 
+     WHERE idRecurso = param_idRecurso;   
+     
+    IF rollback = FALSE THEN       
+       SELECT r.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo
+		 FROM recursos r 
+			  INNER JOIN unidadesMedidas u on u.idUnidadeMedida = r.unidadeMedida
+              LEFT JOIN recursos g on g.idRecurso = r.grupoRecurso
+		WHERE r.idRecurso = param_idRecurso;
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="recursosCriar" id="Procedure-b2b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "recursosCriar"(param_descricao VARCHAR(150),
+                                                       param_numero VARCHAR(25),
+                                                       param_grupoRecurso INT,
+                                                       param_tipo INT,
+                                                       param_nivel INT,
+                                                       param_versao VARCHAR(15),
+                                                       param_atributo TEXT,
+                                                       param_template INT,
+                                                       param_formMagnetto INT,
+                                                       param_ativo CHAR(1),
+                                                       param_unidadeMedida INT)
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO recursos (descricao,
+					  	  numero,
+						  grupoRecurso,
+						  tipo,
+						  nivel,
+						  versao,
+						  atributo,
+						  template,
+						  formMagnetto,
+						  ativo,
+						  unidadeMedida)
+    VALUES (param_descricao,
+            param_numero,
+            param_grupoRecurso,
+            param_tipo,
+            param_nivel,
+            param_versao,
+            param_atributo,
+            param_template,
+            param_formMagnetto,
+            param_ativo,
+            param_unidadeMedida);
+
+    IF rollback = FALSE THEN       
+		SELECT r.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo
+		 FROM recursos r 
+         	  INNER JOIN unidadesMedidas u on u.idUnidadeMedida = r.unidadeMedida 
+              LEFT JOIN recursos g on g.idRecurso = r.grupoRecurso
+        WHERE r.idRecurso = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="recursosExcluir" id="Procedure-166c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "recursosExcluir"(param_idRecurso INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM recursos WHERE idRecurso = param_idRecurso;
+
+	IF rollback = FALSE THEN
+		SELECT null AS idRecurso, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="recursosLer" id="Procedure-1c10" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "recursosLer"(param_idRecurso INT)
+BEGIN
+   SELECT r.*, u.descricao as nomeUnidadeMedida, g.descricao as descricaoGrupo 
+     FROM recursos r 
+          INNER JOIN unidadesMedidas u on u.idUnidadeMedida = r.unidadeMedida
+          LEFT JOIN recursos g on g.idRecurso = r.grupoRecurso
+    WHERE r.idRecurso = param_idRecurso; 
+END]]></string>
+		</procedure>
+		<procedure name="recursosListaNomes" id="Procedure-1fce" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "recursosListaNomes"(param_nome VARCHAR(150))
+BEGIN
+   SELECT idRecurso, descricao
+     FROM recursos           
+    WHERE descricao LIKE CONCAT('%', IF(param_descricao = '*', '', param_descricao), '%')
+    ORDER BY descricao;
+   
+END]]></string>
+		</procedure>
+		<procedure name="resursosLerIdDescricao" id="Procedure-1683" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "resursosLerIdDescricao"(param_descricao VARCHAR(150))
+BEGIN
+   SELECT idRecurso, descricao 
+     FROM recursos
+    WHERE descricao LIKE CONCAT('%', param_descricao, '%');
+END]]></string>
+		</procedure>
+		<procedure name="retornaCodificacaoLista" id="Procedure-25ab" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaCodificacaoLista"(param_idCodificacaoLista INT,
+                                                                 param_todos char(1))
+BEGIN
+	WITH RECURSIVE cte_retornaCodificacaoLista(idCodificacaoLista, grupoCodificacaoLista, numero, descricao)
+	AS
+	(
+	   SELECT idCodificacaoLista, grupoCodificacaoLista, numero, descricao
+		 FROM codificacoesListas
+	   WHERE idCodificacaoLista = param_idCodificacaoLista
+
+	   UNION ALL
+
+	   SELECT r.idCodificacaoLista, r.grupoCodificacaoLista, r.numero, r.descricao
+		 FROM  codificacoesListas r 
+			  INNER JOIN  cte_retornaCodificacaoLista c ON r.grupoCodificacaoLista = c.idCodificacaoLista
+
+	)
+	SELECT idCodificacaoLista, grupoCodificacaoLista, numero, descricao
+	 FROM cte_retornaCodificacaoLista
+	WHERE  if(param_todos = 'S', 1=1, grupoCodificacaoLista is not null)
+    ORDER BY numero; 
+END]]></string>
+		</procedure>
+		<procedure name="retornaListaRecurso" id="Procedure-253c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaListaRecurso"(param_idRecurso INT,
+                                                             param_todos char(1))
+BEGIN
+	WITH RECURSIVE cte_recursos(idRecurso, grupoRecurso, numero, descricao)
+	AS
+	(
+	   SELECT idRecurso, grupoRecurso, numero, descricao
+		 FROM recursos
+	   WHERE idRecurso = param_idRecurso
+
+	   UNION ALL
+
+	   SELECT r.idRecurso, r.grupoRecurso, r.numero, r.descricao
+		 FROM recursos r 
+			  INNER JOIN cte_recursos c ON r.grupoRecurso = c.idRecurso
+
+	)
+	SELECT idRecurso, grupoRecurso, numero, descricao
+	 FROM cte_recursos
+    WHERE  if(param_todos = 'S', 1=1, grupoRecurso is not null)
+    ORDER BY numero; 
+
+END]]></string>
+		</procedure>
+		<procedure name="retornaOpcaoMenuLista" id="Procedure-d91" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaOpcaoMenuLista"(param_idOpcaoMenu INT,
+                                                               param_todos char(1))
+BEGIN
+	WITH RECURSIVE cte_retornaOpcaoMenu(idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, tipo)
+	AS
+	(
+	   SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, IF(grupoOpcaoMenu is null, 'G', 'I') as tipo
+		 FROM opcoesMenu
+	   WHERE idOpcaoMenu = param_idOpcaoMenu
+
+	   UNION ALL
+
+	   SELECT r.idOpcaoMenu, r.grupoOpcaoMenu, r.numero, r.rotulo, IF(r.grupoOpcaoMenu is null, 'G', 'I') as tipo
+		 FROM  opcoesMenu r 
+			  INNER JOIN  cte_retornaOpcaoMenu c ON r.grupoOpcaoMenu = c.idOpcaoMenu
+
+	)
+	SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, tipo
+	 FROM cte_retornaOpcaoMenu
+	WHERE  if(param_todos = 'S', 1=1, grupoOpcaoMenu is not null)
+    ORDER BY numero; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="retornaOpccoesMenusListas" id="Procedure-56f" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaOpccoesMenusListas"()
+BEGIN
+	WITH RECURSIVE cte_retornaOpcaoMenu(idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, tipo)
+	AS
+	(
+	   SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, IF(grupoOpcaoMenu is null, 'G', 'I') as tipo
+		 FROM opcoesMenu
+	   WHERE idOpcaoMenu in  (SELECT idOpcaoMenu
+							    FROM opcoesMenu 
+							   WHERE grupoOpcaoMenu is null)
+                               
+	   UNION ALL
+
+	   SELECT r.idOpcaoMenu, r.grupoOpcaoMenu, r.numero, r.rotulo, IF(r.grupoOpcaoMenu is null, 'G', 'I') as tipo
+		 FROM  opcoesMenu r 
+			  INNER JOIN  cte_retornaOpcaoMenu c ON r.grupoOpcaoMenu = c.idOpcaoMenu
+
+	)
+	SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo, tipo
+	 FROM cte_retornaOpcaoMenu
+    ORDER BY numero; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="retornaOpcoesMenusListas" id="Procedure-a75" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaOpcoesMenusListas"()
+BEGIN
+	WITH RECURSIVE cte_retornaOpcaoMenu(idOpcaoMenu, grupoOpcaoMenu, numero, rotulo)
+	AS
+	(
+	   SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo
+		 FROM opcoesMenu
+	   WHERE idOpcaoMenu in  (SELECT idOpcaoMenu
+							    FROM opcoesMenu 
+							   WHERE grupoOpcaoMenu is null)
+                               
+	   UNION ALL
+
+	   SELECT r.idOpcaoMenu, r.grupoOpcaoMenu, r.numero, r.rotulo
+		 FROM  opcoesMenu r 
+			  INNER JOIN  cte_retornaOpcaoMenu c ON r.grupoOpcaoMenu = c.idOpcaoMenu
+
+	)
+	SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo
+	 FROM cte_retornaOpcaoMenu
+    ORDER BY numero; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="retornaUmaOpcaoMenuLista" id="Procedure-630" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "retornaUmaOpcaoMenuLista"(param_idOpcaoMenu INT,
+                                                                  param_todos char(1))
+BEGIN
+	WITH RECURSIVE cte_retornaUmaOpcaoMenu(idOpcaoMenu, grupoOpcaoMenu, numero, rotulo)
+	AS
+	(
+	   SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo
+		 FROM opcoesMenu
+	   WHERE idOpcaoMenu = param_idOpcaoMenu
+
+	   UNION ALL
+
+	   SELECT r.idOpcaoMenu, r.grupoOpcaoMenu, r.numero, r.rotulo
+		 FROM  opcoesMenu r 
+			  INNER JOIN  cte_retornaUmaOpcaoMenu c ON r.grupoOpcaoMenu = c.idOpcaoMenu
+
+	)
+	SELECT idOpcaoMenu, grupoOpcaoMenu, numero, rotulo
+	 FROM cte_retornaUmaOpcaoMenu
+	WHERE  if(param_todos = 'S', 1=1, grupoOpcaoMenu is not null)
+    ORDER BY numero; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="tokensAtualizar" id="Procedure-1286" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "tokensAtualizar"(param_idToken INTEGER)
+BEGIN
+    SELECT * FROM tokens WHERE idToken = param_idToken;
+END]]></string>
+		</procedure>
+		<procedure name="tokensExcluir" id="Procedure-9aa" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "tokensExcluir"(param_idToken INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM tokens WHERE idToken = param_idToken;
+
+	IF rollback = FALSE THEN
+		SELECT param_idToken AS idToken, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="tokensLer" id="Procedure-1c2a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "tokensLer"(param_criadoInicio DATE, 
+                                                   param_criadoTermino DATE,
+                                                   param_pagina SMALLINT, 
+                                                   param_linhas SMALLINT)
+BEGIN
+
+   DECLARE offset SMALLINT;
+   SET offset = (param_pagina-1) * param_linhas;
+
+   SELECT idToken, 
+          cliente, 
+          usuario, 
+          criadoEm, 
+          expiraEm, 
+          SUBSTR(token, 1, 50) AS token, 
+          pessoasFJ.nome AS nomeCliente, 
+          usuarios.nomeUsuario
+    FROM tokens 
+    LEFT JOIN pessoasFJ ON (tokens.cliente = pessoasFJ.idPessoaFJ)
+    LEFT JOIN usuarios ON (tokens.usuario = usuarios.idUsuario)
+    WHERE criadoEm BETWEEN param_criadoInicio AND param_criadoTermino
+    ORDER BY criadoEm
+    LIMIT param_linhas OFFSET offset;
+END]]></string>
+		</procedure>
+		<procedure name="tokensPost" id="Procedure-180b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "tokensPost"(param_idCliente INTEGER, 
+                                                    param_idUsuario INTEGER, 
+                                                    param_criadoEm VARCHAR(24), 
+                                                    param_expiraEm VARCHAR(24), 
+                                                    param_token VARCHAR(1024))
+BEGIN
+
+DECLARE usuario INT DEFAULT NULL;
+DECLARE grupoAcesso INT DEFAULT NULL;
+DECLARE nomeUsuario VARCHAR(64)  DEFAULT NULL;
+DECLARE email VARCHAR(64) DEFAULT NULL;
+
+START TRANSACTION;
+
+SELECT u.idUsuario, 
+       u.grupoAcesso, 
+       u.nomeUsuario, 
+       u.email
+  INTO @usuario, 
+       @grupoAcesso, 
+       @nomeUsuario, 
+       @email
+  FROM usuarios u
+ WHERE idUsuario = param_idUsuario 
+   AND ativo = 'S';
+
+IF NOT ISNULL(@usuario) THEN
+	INSERT INTO `tokens` (`cliente`, 
+                          `usuario`, 
+                          `criadoEm`, 
+                          `expiraEm`, 
+                          `token`)
+	VALUES (param_idCliente, 
+            param_idUsuario, 
+            param_criadoEm, 
+            param_expiraEm, 
+            param_token);
+            
+	SELECT true AS posted, 
+           param_token AS token, 
+           @nomeUsuario, 
+           @email, 
+           @usuario AS usuario;
+ELSE
+	SELECT false AS posted, 
+           null AS token;
+           
+END IF;
+
+COMMIT;
+
+END]]></string>
+		</procedure>
+		<procedure name="unidadesMedidasAtualizar" id="Procedure-26c4" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "unidadesMedidasAtualizar"(param_idUnidadeMedida INT,
+													              param_descricao VARCHAR(30),
+                                                                  param_sigla VARCHAR(5))
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE unidadesMedidas 
+	   SET descricao = param_descricao,
+           sigla     = param_sigla
+ 	 WHERE idUnidadeMedida = param_idUnidadeMedida;
+
+	IF rollback = FALSE THEN
+		SELECT *
+           FROM unidadesMedidas 
+          WHERE idUnidadeMedida = param_idUnidadeMedida;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="unidadesMedidasCriar" id="Procedure-7e0" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "unidadesMedidasCriar"(param_descricao VARCHAR(30),
+															  param_Sigla VARCHAR(5))
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+   
+ 	INSERT INTO unidadesMedidas (descricao, sigla)
+    VALUES (param_descricao, param_sigla);
+
+    IF rollback = FALSE THEN       
+		SELECT * FROM unidadesMedidas WHERE idUnidadeMedida = LAST_INSERT_ID();       
+    ELSE
+        SELECT 500 AS code ;       
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="unidadesMedidasExcluir" id="Procedure-2255" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "unidadesMedidasExcluir"(param_idUnidadeMedida INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM unidadesMedidas WHERE idUnidadeMedida = param_idUnidadeMedida;
+
+	IF rollback = FALSE THEN
+		SELECT param_idUnidadeMedida AS idUnidadeMedida, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="unidadesMedidasLer" id="Procedure-1e94" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "unidadesMedidasLer"(param_descricao VARCHAR(30))
+BEGIN
+   SELECT * 
+     FROM unidadesMedidas
+    WHERE descricao LIKE CONCAT('%', IF(param_descricao = '*', '', param_descricao), '%')
+    ORDER BY descricao;
+END]]></string>
+		</procedure>
+		<procedure name="userPwdUpdate" id="Procedure-8e9" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "userPwdUpdate"(param_idUsuario INT,
+													   param_senha VARCHAR(30))
+BEGIN
+
+	UPDATE `usuarios`
+	   SET `usuarios`.`senha` = SHA(param_senha)
+	 WHERE `usuarios`.`idUsuario` = param_idUsuario;
+    
+	SELECT `usuarios`.`senha`, `usuarios`.`idUsuario`
+ 	  FROM `usuarios`
+	 WHERE `usuarios`.`idUsuario` = param_idUsuario;
+
+END]]></string>
+		</procedure>
+		<procedure name="usuariosAtualizar" id="Procedure-1520" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosAtualizar"(	param_idUsuario INT,
+															param_colaborador INT,	
+															param_grupoAcesso INT,
+															param_nomeUsuario VARCHAR(45),
+															param_login VARCHAR(30),
+															param_ativo CHAR(1),
+															param_email VARCHAR(45),
+															param_emailAlternativo VARCHAR(45),
+															param_telefone1 varbinary(20),
+															param_telefone2 VARCHAR(20),
+															param_dataInicio DATETIME,
+															param_dataTermino DATETIME)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	UPDATE usuarios 
+	SET 	colaborador         = param_colaborador,
+			nomeUsuario 		= param_nomeUsuario, 
+			grupoAcesso			= param_grupoAcesso, 
+			login				= param_login, 
+			ativo				= param_ativo, 
+			email				= param_email, 
+			emailAlternativo	= param_emailAlternativo, 
+			telefone1			= param_telefone1, 
+			telefone2			= param_telefone2,
+			dataInicio          = param_dataInicio,
+			dataTermino         = param_dataTermino
+	WHERE idUsuario 			= param_idUsuario;
+
+	IF rollback = FALSE THEN
+		SELECT  idUsuario,
+				colaborador, 
+				grupoAcesso, 
+				nomeUsuario, 
+				login, 
+				ativo, 
+				email, 
+				emailAlternativo, 
+				telefone1, 
+				telefone2, 
+				dataInicio, 
+				dataTermino  
+		FROM usuarios 
+      WHERE idUsuario = param_idUsuario;
+    ELSE
+		SELECT 500 AS code ;
+    END IF; 
+    
+END]]></string>
+		</procedure>
+		<procedure name="usuariosCriaNovaSenha" id="Procedure-114b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosCriaNovaSenha"(param_email VARCHAR(45))
+BEGIN
+
+   DECLARE novaSenha VARCHAR(10);
+   SET novaSenha = substr(md5(rand()), 1, 10);
+   
+   UPDATE usuarios 
+      SET senhaProvisoria = SHA(novaSenha)
+	WHERE email = param_email;
+      
+	SELECT idUsuario, 
+		   email,
+           nomeUsuario,
+		   novaSenha AS novaSenha
+   FROM usuarios
+   WHERE email = param_email;
+	
+
+
+END]]></string>
+		</procedure>
+		<procedure name="usuariosCriar" id="Procedure-180c" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosCriar"( param_colaborador INT,
+									 				    param_grupoAcesso INT,								 
+														param_nomeUsuario VARCHAR(45),
+								 					    param_login VARCHAR(30),
+														param_senha VARCHAR(30),
+							 						    param_ativo CHAR(1),
+						 							    param_email VARCHAR(45),
+													    param_emailAlternativo VARCHAR(45),
+													    param_telefone1 varbinary(20),
+													    param_telefone2 VARCHAR(20),
+														param_dataInicio DATETIME,
+														param_dataTermino DATETIME)
+BEGIN
+
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+ 
+ 	INSERT INTO usuarios (colaborador, 
+                          grupoAcesso, 
+                          nomeUsuario, 
+                          login, 
+                          senha,
+                          ativo, 
+                          email, 
+                          emailAlternativo, 
+                          telefone1, 
+                          telefone2, 
+                          dataInicio, 
+                          dataTermino)
+    VALUES (param_colaborador, 
+            param_grupoAcesso, 
+            param_nomeUsuario, 
+            param_login, 
+            SHA(param_senha),
+            param_ativo,
+            param_email, 
+            param_emailAlternativo, 
+            param_telefone1, 
+            param_telefone2, 
+            param_dataInicio,
+            param_dataTermino);
+
+    IF rollback = FALSE THEN
+		SELECT  idUsuario,
+				colaborador, 
+				grupoAcesso, 
+				nomeUsuario, 
+				login, 
+				ativo, 
+				email, 
+				emailAlternativo, 
+				telefone1, 
+				telefone2, 
+				dataInicio, 
+				dataTermino 
+           FROM usuarios 
+          WHERE idUsuario = LAST_INSERT_ID();
+    ELSE
+       SELECT 500 AS code ;
+    END IF;
+ END]]></string>
+		</procedure>
+		<procedure name="usuariosEmailDisponivel" id="Procedure-2680" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosEmailDisponivel"(param_idUsuario INTEGER, param_email VARCHAR(45))
+BEGIN
+    SELECT idUsuario
+    FROM usuarios
+    WHERE idUsuario <> param_idUsuario AND email = param_email; 
+END]]></string>
+		</procedure>
+		<procedure name="usuariosExcluir" id="Procedure-2263" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosExcluir"(param_idUsuario INT)
+BEGIN
+
+	DECLARE rollback INTEGER DEFAULT FALSE;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET rollback = TRUE;
+
+	DELETE FROM usuarios WHERE idUsuario = param_idUsuario;
+
+	IF rollback = FALSE THEN
+		SELECT param_idUsuario AS idUsuario, 200 AS code;
+	ELSE
+		SELECT 500 AS code;
+	END IF; 
+		 
+END]]></string>
+		</procedure>
+		<procedure name="usuariosExisteUsuario" id="Procedure-1b5a" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosExisteUsuario"(param_criterio VARCHAR(45))
+BEGIN
+    SELECT idUsuario, nomeUsuario, login, email
+        FROM usuarios
+        WHERE login = param_criterio 
+           OR email = param_criterio; 
+END]]></string>
+		</procedure>
+		<procedure name="usuariosLer" id="Procedure-2" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosLer"(param_nomeUsuario VARCHAR(45))
+BEGIN
+   SELECT idUsuario, nomeUsuario, login, dataInicio, dataTermino, ativo, email, telefone1,
+          telefone2, emailAlternativo, grupoAcesso, colaborador
+     FROM usuarios 
+    WHERE nomeUsuario LIKE CONCAT('%', IF(param_nomeUsuario = '*', '', param_nomeUsuario), '%')
+    ORDER BY nomeUsuario;
+END]]></string>
+		</procedure>
+		<procedure name="usuariosLoginDisponivel" id="Procedure-ca0" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "usuariosLoginDisponivel"(param_idUsuario INTEGER, param_login VARCHAR(30))
+BEGIN
+    SELECT idUsuario
+    FROM usuarios
+    WHERE idUsuario <> param_idUsuario AND login = param_login; 
+END]]></string>
+		</procedure>
+		<procedure name="validaNovaSenha" id="Procedure-732" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "validaNovaSenha"(param_idUsuario INTEGER, param_novaSenha VARCHAR(10))
+BEGIN
+
+	UPDATE usuarios
+	SET 	 usuarios.validacaoProvisoria = NOW(),
+			 usuarios.senha = SHA(param_novaSenha)
+   WHERE  usuarios.idUsuario = param_idUsuario AND 
+			 usuarios.senhaProvisoria = SHA(param_novaSenha);
+   
+	SELECT idUsuario,
+			 colaborador, 
+			 grupoAcesso, 
+			 nomeUsuario, 
+			 login, 
+			 ativo, 
+			 email, 
+			 emailAlternativo, 
+			 telefone1, 
+			 telefone2, 
+			 dataInicio, 
+			 dataTermino
+	FROM usuarios
+	WHERE usuarios.idUsuario = param_idUsuario AND 
+			usuarios.senha = SHA(param_novaSenha);
+END]]></string>
+		</procedure>
+		<procedure name="validate2ndFactor" id="Procedure-c8" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE DEFINER="doadmin"@"%" PROCEDURE "validate2ndFactor"(	param_userId INT,
+																				param_sixDigitCode CHAR(06))
+BEGIN
+
+   DECLARE timedOut BOOLEAN;
+   DECLARE maxAuthId INT;
+   DECLARE validSixDigit char(06);
+   DECLARE nowDateTime DATETIME;
+
+   SET nowDateTime = NOW();
+   
+   SELECT MAX(authId) INTO maxAuthId 
+	FROM authsLog 
+	WHERE userId = param_userId AND success IS NULL;
+   
+   IF maxAuthId IS NOT NULL THEN
+      SELECT sixDigitCode, substring(timediff(nowDateTime, genDateTime), 4) > '05:00'
+        INTO validSixDigit, timedOut
+        FROM authsLog 
+       WHERE authId = maxAuthId;
+     
+       IF (timedOut = FALSE) THEN
+          UPDATE authsLog
+             SET attempts    = attempts + 1,
+				 lastAttempt = nowDateTime,
+				 timedOut = 'N',
+				 success = IF(param_sixDigitCode = validSixDigit, 'Y', NULL)
+	        WHERE authId = maxAuthId;
+         
+            IF (param_sixDigitCode = validSixDigit) THEN
+            -- Turn all other unset authentication (if any) log as timedOut and logged out 
+			 UPDATE authsLog
+				SET timedOut = 'Y',
+					logout = NOW(),
+					success = 'N'
+			  WHERE userId = param_userId 
+                AND success IS NULL; 
+
+              SELECT '200' AS code, 'Successfuly authenticated' AS message;
+            ELSE
+              SELECT '401' AS code, 'Invalid six digit provided. Authentication faild' AS message;
+            END IF;
+         
+		 ELSE
+          -- Turn all other unset authentication (if any) log as timedOut
+             UPDATE authsLog
+				SET timedOut = 'Y',
+					success = 'N'
+			  WHERE userId = param_userId 
+                AND success IS NULL ;
+          
+              SELECT '410' AS code, 'Gone! Authentication code has expired or already authenticated' AS message;
+ 
+		   END IF;
+	  COMMIT;
+  ELSE
+	  SELECT '404' AS code, 'No pending authenitcation for provided user' AS message;
+  END IF;
+END]]></string>
+		</procedure>
+	</schema>
+	<connector name="MySql" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" driver_desc="Standard" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-1a9c" show_relation="columns" >
+		<entity schema="xp_dev" name="aditivosContratos" color="F4DDBE" x="1472" y="1648" />
+		<entity schema="xp_dev" name="agendaOrdemServico" color="BEBEF4" x="2080" y="80" />
+		<entity schema="xp_dev" name="agendas" color="D1BEF4" x="1104" y="1408" />
+		<entity schema="xp_dev" name="authsLog" color="BED3F4" x="48" y="1056" />
+		<entity schema="xp_dev" name="baterias" color="C7F4BE" x="1120" y="1120" />
+		<entity schema="xp_dev" name="cidades" color="F4DDBE" x="2288" y="1408" />
+		<entity schema="xp_dev" name="codificacoesListas" color="D1BEF4" x="448" y="1408" />
+		<entity schema="xp_dev" name="colaboradores" color="F4DDBE" x="1792" y="1408" />
+		<entity schema="xp_dev" name="contratos" color="F4DDBE" x="1472" y="1904" />
+		<entity schema="xp_dev" name="equipamentosClientes" color="C7F4BE" x="784" y="704" />
+		<entity schema="xp_dev" name="equipamentosFornecedores" color="C7F4BE" x="1120" y="704" />
+		<entity schema="xp_dev" name="equipesAgendas" color="BEBEF4" x="2080" y="496" />
+		<entity schema="xp_dev" name="estados" color="F4DDBE" x="1792" y="1648" />
+		<entity schema="xp_dev" name="grupoAcessos" color="BEBEF4" x="1504" y="272" />
+		<entity schema="xp_dev" name="itensCoberturasContratos" color="C7F4BE" x="1104" y="320" />
+		<entity schema="xp_dev" name="itensOrdensServicos" color="C7F4BE" x="784" y="320" />
+		<entity schema="xp_dev" name="locaisClientes" color="C7F4BE" x="512" y="80" />
+		<entity schema="xp_dev" name="opcoesMenu" color="BEBEF4" x="1776" y="496" />
+		<entity schema="xp_dev" name="ordensServicos" color="D1BEF4" x="768" y="1408" />
+		<entity schema="xp_dev" name="paises" color="F4DDBE" x="1792" y="1856" />
+		<entity schema="xp_dev" name="permissoesAcesso" color="BEBEF4" x="2064" y="800" />
+		<entity schema="xp_dev" name="pessoasFJ" color="F4DDBE" x="2016" y="1408" />
+		<entity schema="xp_dev" name="processosOS" color="BEBEF4" x="1472" y="496" />
+		<entity schema="xp_dev" name="recursos" color="C7F4BE" x="512" y="320" />
+		<entity schema="xp_dev" name="tokens" color="BED3F4" x="272" y="1056" />
+		<entity schema="xp_dev" name="unidadesMedidas" color="D1BEF4" x="448" y="1680" />
+		<entity schema="xp_dev" name="usuarios" color="BEBEF4" x="1776" y="80" />
+		<callout x="512" y="176" pointer="Round" >
+			<comment><![CDATA[This is a layout. 
+- Double-click table headers, columns, or foreign keys to edit 
+- Drag tables to the layout from the structure tree, or 
+   add them by pressing the arrow icon near columns 
+- Create multiple layouts with the same or different tables 
+- Right-click the layout to create new tables]]></comment>
+		</callout>
+		<group name="authsLog" color="ECF0F7" >
+			<entity schema="xp_dev" name="authsLog" />
+			<entity schema="xp_dev" name="tokens" />
+		</group>
+		<group name="codificacoesListas" color="F0ECF7" >
+			<entity schema="xp_dev" name="codificacoesListas" />
+			<entity schema="xp_dev" name="ordensServicos" />
+			<entity schema="xp_dev" name="agendas" />
+			<entity schema="xp_dev" name="unidadesMedidas" />
+		</group>
+		<group name="colaboradores" color="F7F2EC" >
+			<entity schema="xp_dev" name="colaboradores" />
+			<entity schema="xp_dev" name="pessoasFJ" />
+			<entity schema="xp_dev" name="estados" />
+			<entity schema="xp_dev" name="cidades" />
+			<entity schema="xp_dev" name="aditivosContratos" />
+			<entity schema="xp_dev" name="contratos" />
+			<entity schema="xp_dev" name="paises" />
+		</group>
+		<group name="usuarios" color="ECECF7" >
+			<entity schema="xp_dev" name="usuarios" />
+			<entity schema="xp_dev" name="agendaOrdemServico" />
+			<entity schema="xp_dev" name="equipesAgendas" />
+			<entity schema="xp_dev" name="opcoesMenu" />
+			<entity schema="xp_dev" name="processosOS" />
+			<entity schema="xp_dev" name="grupoAcessos" />
+			<entity schema="xp_dev" name="permissoesAcesso" />
+		</group>
+		<group name="recursos" color="EEF7EC" >
+			<entity schema="xp_dev" name="itensOrdensServicos" />
+			<entity schema="xp_dev" name="equipamentosClientes" />
+			<entity schema="xp_dev" name="itensCoberturasContratos" />
+			<entity schema="xp_dev" name="equipamentosFornecedores" />
+			<entity schema="xp_dev" name="locaisClientes" />
+			<entity schema="xp_dev" name="baterias" />
+			<entity schema="xp_dev" name="recursos" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-25ee" show_column_type="y" show_relation="columns" >
+		<entity schema="xp_dev" name="aditivosContratos" color="F4DDBE" x="1792" y="1616" />
+		<entity schema="xp_dev" name="agendaOrdemServico" color="BEBEF4" x="2496" y="48" />
+		<entity schema="xp_dev" name="agendas" color="D1BEF4" x="1376" y="1376" />
+		<entity schema="xp_dev" name="authsLog" color="BED3F4" x="48" y="1024" />
+		<entity schema="xp_dev" name="baterias" color="C7F4BE" x="1360" y="1088" />
+		<entity schema="xp_dev" name="cidades" color="F4DDBE" x="2800" y="1376" />
+		<entity schema="xp_dev" name="codificacoesListas" color="D1BEF4" x="624" y="1376" />
+		<entity schema="xp_dev" name="colaboradores" color="F4DDBE" x="2144" y="1376" />
+		<entity schema="xp_dev" name="contratos" color="F4DDBE" x="1792" y="1872" />
+		<entity schema="xp_dev" name="equipamentosClientes" color="C7F4BE" x="1008" y="672" />
+		<entity schema="xp_dev" name="equipamentosFornecedores" color="C7F4BE" x="1360" y="672" />
+		<entity schema="xp_dev" name="equipesAgendas" color="BEBEF4" x="2496" y="464" />
+		<entity schema="xp_dev" name="estados" color="F4DDBE" x="2144" y="1616" />
+		<entity schema="xp_dev" name="grupoAcessos" color="BEBEF4" x="1792" y="240" />
+		<entity schema="xp_dev" name="itensCoberturasContratos" color="C7F4BE" x="1360" y="288" />
+		<entity schema="xp_dev" name="itensOrdensServicos" color="C7F4BE" x="1008" y="288" />
+		<entity schema="xp_dev" name="locaisClientes" color="C7F4BE" x="656" y="48" />
+		<entity schema="xp_dev" name="opcoesMenu" color="BEBEF4" x="2128" y="464" />
+		<entity schema="xp_dev" name="ordensServicos" color="D1BEF4" x="976" y="1376" />
+		<entity schema="xp_dev" name="paises" color="F4DDBE" x="2144" y="1824" />
+		<entity schema="xp_dev" name="permissoesAcesso" color="BEBEF4" x="2464" y="768" />
+		<entity schema="xp_dev" name="pessoasFJ" color="F4DDBE" x="2432" y="1376" />
+		<entity schema="xp_dev" name="processosOS" color="BEBEF4" x="1792" y="464" />
+		<entity schema="xp_dev" name="recursos" color="C7F4BE" x="656" y="288" />
+		<entity schema="xp_dev" name="tokens" color="BED3F4" x="336" y="1024" />
+		<entity schema="xp_dev" name="unidadesMedidas" color="D1BEF4" x="624" y="1648" />
+		<entity schema="xp_dev" name="usuarios" color="BEBEF4" x="2128" y="48" />
+		<script name="SQL Editor" id="Editor-151" language="SQL" >
+			<string><![CDATA[SELECT
+	`idRecurso`, `grupoRecurso`, numero, descricao, tipo, nivel, versao, atributo, template, `formMagnetto`, ativo, `unidadeMedida`, 
+	`codigoExterno`
+FROM
+	xp_dev.recursos s;]]></string>
+		</script>
+		<browser id="Browse-218c" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="xp_dev" entity="recursos" x="20" y="20" width="400" height="300" >
+				<browse_table schema="xp_dev" entity="equipamentosClientes" fk="equipamentosClientes_ibfk_1" x="440" y="20" width="500" height="350" >
+					<browse_table schema="xp_dev" entity="baterias" fk="baterias_ibfk_1" x="960" y="20" width="500" height="350" />
+				</browse_table>
+			</browse_table>
+		</browser>
+		<query id="Query-801" name="Query Builder" >
+			<query_table schema="xp_dev" name="recursos" alias="r" x="48" y="48" >
+				<column name="idRecurso" />
+				<column name="grupoRecurso" />
+				<column name="numero" />
+				<column name="descricao" />
+				<column name="tipo" />
+				<column name="nivel" />
+				<column name="versao" />
+				<column name="atributo" />
+				<column name="template" />
+				<column name="formMagnetto" />
+				<column name="ativo" />
+				<column name="unidadeMedida" />
+				<column name="codigoExterno" />
+				<query_table schema="xp_dev" name="equipamentosClientes" alias="e" x="288" y="48" fk="equipamentosClientes_ibfk_1" type="Inner Join" >
+					<column name="equipamentoCliente" />
+					<column name="numeroBateria" />
+					<column name="fabricante" />
+					<column name="serie" />
+					<column name="modelo" />
+					<column name="tag" />
+					<column name="dataFabricacao" />
+					<column name="capacidade" />
+					<column name="tensao" />
+					<column name="potencia" />
+					<column name="tensaoEntrada" />
+					<column name="mesAnoFabricacao" />
+					<column name="idEquipamentoCliente" />
+					<column name="equipamentoFornecedor" />
+					<column name="cliente" />
+					<query_table schema="xp_dev" name="baterias" alias="b" x="592" y="48" fk="baterias_ibfk_1" type="Inner Join" >
+						<column name="tipo" />
+						<column name="capacidade" />
+						<column name="elemento" />
+						<column name="fornecimento" />
+						<column name="equipamentoCliente" />
+						<column name="idBateria" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Report" id="Report-1a71" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Recursos Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="idRecurso" type="4" />
+						<var name="grupoRecurso" type="4" />
+						<var name="numero" />
+						<var name="descricao" />
+						<var name="tipo" type="4" />
+						<var name="nivel" type="4" />
+						<var name="versao" />
+						<var name="atributo" type="-1" />
+						<var name="template" type="4" />
+						<var name="formMagnetto" type="4" />
+						<var name="ativo" type="1" />
+						<var name="unidadeMedida" type="4" />
+						<var name="codigoExterno" />
+						<script ><![CDATA[SELECT * FROM xp_dev.recursos]]></script>
+					</form_script>
+					<param name="i0" value="ativo" />
+					<param name="width" value="100%" />
+					<param name="v0" value="unidadeMedida" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="idRecurso" type="4" />
+						<var name="grupoRecurso" type="4" />
+						<var name="numero" />
+						<var name="descricao" />
+						<var name="tipo" type="4" />
+						<var name="nivel" type="4" />
+						<var name="versao" />
+						<var name="atributo" type="-1" />
+						<var name="template" type="4" />
+						<var name="formMagnetto" type="4" />
+						<var name="ativo" type="1" />
+						<var name="unidadeMedida" type="4" />
+						<var name="codigoExterno" />
+						<script ><![CDATA[SELECT * FROM xp_dev.recursos]]></script>
+					</form_script>
+					<cell type="label" name="idRecurso" pos="0,0,0,0,c,c" />
+					<cell type="label" name="grupoRecurso" pos="1,0,1,0,c,c" />
+					<cell type="label" name="numero" pos="2,0,2,0,c,c" />
+					<cell type="label" name="descricao" pos="3,0,3,0,c,c" />
+					<cell type="label" name="tipo" pos="4,0,4,0,c,c" />
+					<cell type="label" name="nivel" pos="5,0,5,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="6,0,6,0,c,c" />
+					<cell type="label" name="${idRecurso}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${grupoRecurso}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${numero}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${descricao}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${tipo}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${nivel}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="6,1,6,1,c,c" ref_id="Report-1a71" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-1a71" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-1a71" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-1a71" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
