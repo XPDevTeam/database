@@ -3764,38 +3764,38 @@ BEGIN
 END]]></string>
 		</procedure>
 	</schema>
-	<connector name="MySql" database="MySql" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
 	<connector name="MySql" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" driver_desc="Standard" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
+	<connector name="MySql" database="MySql" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
 	<layout name="Main Layout" id="Layout-1a9c" show_relation="columns" >
 		<comment><![CDATA[Main Layout]]></comment>
-		<entity schema="xp_dev" name="aditivosContratos" color="F4DDBE" x="1472" y="1648" />
-		<entity schema="xp_dev" name="agendaOrdemServico" color="BEBEF4" x="2080" y="80" />
-		<entity schema="xp_dev" name="agendas" color="D1BEF4" x="1104" y="1408" />
-		<entity schema="xp_dev" name="authsLog" color="BED3F4" x="48" y="1056" />
-		<entity schema="xp_dev" name="baterias" color="C7F4BE" x="1120" y="1120" />
-		<entity schema="xp_dev" name="cidades" color="F4DDBE" x="2288" y="1408" />
-		<entity schema="xp_dev" name="codificacoesListas" color="D1BEF4" x="448" y="1408" />
-		<entity schema="xp_dev" name="colaboradores" color="F4DDBE" x="1792" y="1408" />
-		<entity schema="xp_dev" name="contratos" color="F4DDBE" x="1472" y="1904" />
-		<entity schema="xp_dev" name="equipamentosClientes" color="C7F4BE" x="784" y="704" />
-		<entity schema="xp_dev" name="equipamentosFornecedores" color="C7F4BE" x="1120" y="704" />
-		<entity schema="xp_dev" name="equipesAgendas" color="BEBEF4" x="2080" y="496" />
-		<entity schema="xp_dev" name="estados" color="F4DDBE" x="1792" y="1648" />
-		<entity schema="xp_dev" name="grupoAcessos" color="BEBEF4" x="1504" y="272" />
-		<entity schema="xp_dev" name="itensCoberturasContratos" color="C7F4BE" x="1104" y="320" />
-		<entity schema="xp_dev" name="itensOrdensServicos" color="C7F4BE" x="784" y="320" />
-		<entity schema="xp_dev" name="locaisClientes" color="C7F4BE" x="512" y="80" />
-		<entity schema="xp_dev" name="opcoesMenu" color="BEBEF4" x="1776" y="496" />
-		<entity schema="xp_dev" name="ordensServicos" color="D1BEF4" x="768" y="1408" />
-		<entity schema="xp_dev" name="paises" color="F4DDBE" x="1792" y="1856" />
-		<entity schema="xp_dev" name="permissoesAcesso" color="BEBEF4" x="2064" y="800" />
-		<entity schema="xp_dev" name="pessoasFJ" color="F4DDBE" x="2016" y="1408" />
-		<entity schema="xp_dev" name="processosOS" color="BEBEF4" x="1472" y="496" />
-		<entity schema="xp_dev" name="recursos" color="C7F4BE" x="512" y="320" />
-		<entity schema="xp_dev" name="tokens" color="BED3F4" x="272" y="1056" />
-		<entity schema="xp_dev" name="unidadesMedidas" color="D1BEF4" x="448" y="1680" />
-		<entity schema="xp_dev" name="usuarios" color="BEBEF4" x="1776" y="80" />
-		<callout x="512" y="176" pointer="Round" >
+		<entity schema="xp_dev" name="aditivosContratos" color="F4DDBE" x="1472" y="1664" />
+		<entity schema="xp_dev" name="agendaOrdemServico" color="BEBEF4" x="2080" y="96" />
+		<entity schema="xp_dev" name="agendas" color="D1BEF4" x="1104" y="1424" />
+		<entity schema="xp_dev" name="authsLog" color="BED3F4" x="48" y="1072" />
+		<entity schema="xp_dev" name="baterias" color="C7F4BE" x="1120" y="1136" />
+		<entity schema="xp_dev" name="cidades" color="F4DDBE" x="2288" y="1424" />
+		<entity schema="xp_dev" name="codificacoesListas" color="D1BEF4" x="448" y="1424" />
+		<entity schema="xp_dev" name="colaboradores" color="F4DDBE" x="1792" y="1424" />
+		<entity schema="xp_dev" name="contratos" color="F4DDBE" x="1472" y="1920" />
+		<entity schema="xp_dev" name="equipamentosClientes" color="C7F4BE" x="784" y="720" />
+		<entity schema="xp_dev" name="equipamentosFornecedores" color="C7F4BE" x="1120" y="720" />
+		<entity schema="xp_dev" name="equipesAgendas" color="BEBEF4" x="2112" y="640" />
+		<entity schema="xp_dev" name="estados" color="F4DDBE" x="1792" y="1664" />
+		<entity schema="xp_dev" name="grupoAcessos" color="BEBEF4" x="1504" y="352" />
+		<entity schema="xp_dev" name="itensCoberturasContratos" color="C7F4BE" x="1104" y="336" />
+		<entity schema="xp_dev" name="itensOrdensServicos" color="C7F4BE" x="784" y="336" />
+		<entity schema="xp_dev" name="locaisClientes" color="C7F4BE" x="512" y="96" />
+		<entity schema="xp_dev" name="opcoesMenu" color="BEBEF4" x="1776" y="592" />
+		<entity schema="xp_dev" name="ordensServicos" color="D1BEF4" x="768" y="1424" />
+		<entity schema="xp_dev" name="paises" color="F4DDBE" x="1792" y="1872" />
+		<entity schema="xp_dev" name="permissoesAcesso" color="BEBEF4" x="1504" y="80" />
+		<entity schema="xp_dev" name="pessoasFJ" color="F4DDBE" x="2016" y="1424" />
+		<entity schema="xp_dev" name="processosOS" color="BEBEF4" x="1488" y="608" />
+		<entity schema="xp_dev" name="recursos" color="C7F4BE" x="512" y="336" />
+		<entity schema="xp_dev" name="tokens" color="BED3F4" x="272" y="1072" />
+		<entity schema="xp_dev" name="unidadesMedidas" color="D1BEF4" x="448" y="1696" />
+		<entity schema="xp_dev" name="usuarios" color="BEBEF4" x="1776" y="96" />
+		<callout x="512" y="192" pointer="Round" >
 			<comment><![CDATA[This is a layout. 
 - Double-click table headers, columns, or foreign keys to edit 
 - Drag tables to the layout from the structure tree, or 
@@ -3824,11 +3824,11 @@ END]]></string>
 		</group>
 		<group name="usuarios" color="ECECF7" >
 			<entity schema="xp_dev" name="agendaOrdemServico" />
-			<entity schema="xp_dev" name="equipesAgendas" />
-			<entity schema="xp_dev" name="opcoesMenu" />
-			<entity schema="xp_dev" name="processosOS" />
-			<entity schema="xp_dev" name="permissoesAcesso" />
 			<entity schema="xp_dev" name="usuarios" />
+			<entity schema="xp_dev" name="permissoesAcesso" />
+			<entity schema="xp_dev" name="opcoesMenu" />
+			<entity schema="xp_dev" name="equipesAgendas" />
+			<entity schema="xp_dev" name="processosOS" />
 			<entity schema="xp_dev" name="grupoAcessos" />
 		</group>
 		<group name="recursos" color="EEF7EC" >
@@ -3886,18 +3886,18 @@ FROM
 		<query id="Query-801" name="Query Builder" >
 			<query_table schema="xp_dev" name="recursos" alias="r" x="48" y="48" >
 				<column name="idRecurso" />
-				<column name="grupoRecurso" />
-				<column name="numero" />
-				<column name="descricao" />
-				<column name="tipo" />
-				<column name="nivel" />
-				<column name="versao" />
-				<column name="atributo" />
-				<column name="template" />
-				<column name="formMagnetto" />
 				<column name="ativo" />
-				<column name="unidadeMedida" />
+				<column name="atributo" />
 				<column name="codigoExterno" />
+				<column name="descricao" />
+				<column name="formMagnetto" />
+				<column name="grupoRecurso" />
+				<column name="nivel" />
+				<column name="numero" />
+				<column name="template" />
+				<column name="tipo" />
+				<column name="unidadeMedida" />
+				<column name="versao" />
 				<query_table schema="xp_dev" name="equipamentosClientes" alias="e" x="288" y="48" fk="equipamentosClientes_ibfk_1" type="Inner Join" >
 					<column name="equipamentoCliente" />
 					<column name="numeroBateria" />

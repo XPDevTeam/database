@@ -602,18 +602,18 @@
 			<column name="idRecurso" type="INT" jt="4" mandatory="y" >
 				<identity><![CDATA[AUTO_INCREMENT]]></identity>
 			</column>
-			<column name="grupoRecurso" type="INT" jt="4" />
-			<column name="numero" type="VARCHAR" length="25" jt="12" mandatory="y" />
-			<column name="descricao" type="VARCHAR" length="150" jt="12" mandatory="y" />
-			<column name="tipo" type="INT" jt="4" mandatory="y" />
-			<column name="nivel" type="INT" jt="4" mandatory="y" />
-			<column name="versao" type="VARCHAR" length="15" jt="12" />
-			<column name="atributo" type="TEXT" jt="-1" />
-			<column name="template" type="INT" jt="4" />
-			<column name="formMagnetto" type="INT" jt="4" />
 			<column name="ativo" type="CHAR" length="1" jt="1" mandatory="y" />
-			<column name="unidadeMedida" type="INT" jt="4" mandatory="y" />
+			<column name="atributo" type="TEXT" jt="-1" />
 			<column name="codigoExterno" type="VARCHAR" length="30" jt="12" />
+			<column name="descricao" type="VARCHAR" length="150" jt="12" mandatory="y" />
+			<column name="formMagnetto" type="INT" jt="4" />
+			<column name="grupoRecurso" type="INT" jt="4" />
+			<column name="nivel" type="INT" jt="4" mandatory="y" />
+			<column name="numero" type="VARCHAR" length="25" jt="12" mandatory="y" />
+			<column name="template" type="INT" jt="4" />
+			<column name="tipo" type="INT" jt="4" mandatory="y" />
+			<column name="unidadeMedida" type="INT" jt="4" mandatory="y" />
+			<column name="versao" type="VARCHAR" length="15" jt="12" />
 			<index name="pk_recursos" unique="PRIMARY_KEY" >
 				<column name="idRecurso" />
 			</index>
@@ -3764,8 +3764,10 @@ BEGIN
 END]]></string>
 		</procedure>
 	</schema>
+	<connector name="MySql" database="MySql" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
 	<connector name="MySql" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" driver_desc="Standard" host="db-mysql-nyc1-74135-do-user-13254940-0.b.db.ondigitalocean.com" port="25060" instance="xp_dev" user="doadmin" passwd="QVZOU19aUy1rNU9oS2tvVlpPR0dpNW1O" useSystemProxy="false" />
 	<layout name="Main Layout" id="Layout-1a9c" show_relation="columns" >
+		<comment><![CDATA[Main Layout]]></comment>
 		<entity schema="xp_dev" name="aditivosContratos" color="F4DDBE" x="1472" y="1648" />
 		<entity schema="xp_dev" name="agendaOrdemServico" color="BEBEF4" x="2080" y="80" />
 		<entity schema="xp_dev" name="agendas" color="D1BEF4" x="1104" y="1408" />
@@ -3821,22 +3823,22 @@ END]]></string>
 			<entity schema="xp_dev" name="paises" />
 		</group>
 		<group name="usuarios" color="ECECF7" >
-			<entity schema="xp_dev" name="usuarios" />
 			<entity schema="xp_dev" name="agendaOrdemServico" />
 			<entity schema="xp_dev" name="equipesAgendas" />
 			<entity schema="xp_dev" name="opcoesMenu" />
 			<entity schema="xp_dev" name="processosOS" />
-			<entity schema="xp_dev" name="grupoAcessos" />
 			<entity schema="xp_dev" name="permissoesAcesso" />
+			<entity schema="xp_dev" name="usuarios" />
+			<entity schema="xp_dev" name="grupoAcessos" />
 		</group>
 		<group name="recursos" color="EEF7EC" >
-			<entity schema="xp_dev" name="itensOrdensServicos" />
 			<entity schema="xp_dev" name="equipamentosClientes" />
 			<entity schema="xp_dev" name="itensCoberturasContratos" />
 			<entity schema="xp_dev" name="equipamentosFornecedores" />
 			<entity schema="xp_dev" name="locaisClientes" />
 			<entity schema="xp_dev" name="baterias" />
 			<entity schema="xp_dev" name="recursos" />
+			<entity schema="xp_dev" name="itensOrdensServicos" />
 		</group>
 	</layout>
 	<layout name="~Layout with Sample Tools" id="Layout-25ee" show_column_type="y" show_relation="columns" >
@@ -3932,17 +3934,17 @@ FROM
 					<form_script type="DataSource" language="SQL" >
 						<var name="idRecurso" type="4" />
 						<var name="grupoRecurso" type="4" />
-						<var name="numero" />
-						<var name="descricao" />
+						<var name="numero" type="-1" />
+						<var name="descricao" type="-1" />
 						<var name="tipo" type="4" />
 						<var name="nivel" type="4" />
-						<var name="versao" />
+						<var name="versao" type="-1" />
 						<var name="atributo" type="-1" />
 						<var name="template" type="4" />
 						<var name="formMagnetto" type="4" />
 						<var name="ativo" type="1" />
 						<var name="unidadeMedida" type="4" />
-						<var name="codigoExterno" />
+						<var name="codigoExterno" type="-1" />
 						<script ><![CDATA[SELECT * FROM xp_dev.recursos]]></script>
 					</form_script>
 					<param name="i0" value="ativo" />
@@ -3955,17 +3957,17 @@ FROM
 					<form_script type="DataSource" language="SQL" >
 						<var name="idRecurso" type="4" />
 						<var name="grupoRecurso" type="4" />
-						<var name="numero" />
-						<var name="descricao" />
+						<var name="numero" type="-1" />
+						<var name="descricao" type="-1" />
 						<var name="tipo" type="4" />
 						<var name="nivel" type="4" />
-						<var name="versao" />
+						<var name="versao" type="-1" />
 						<var name="atributo" type="-1" />
 						<var name="template" type="4" />
 						<var name="formMagnetto" type="4" />
 						<var name="ativo" type="1" />
 						<var name="unidadeMedida" type="4" />
-						<var name="codigoExterno" />
+						<var name="codigoExterno" type="-1" />
 						<script ><![CDATA[SELECT * FROM xp_dev.recursos]]></script>
 					</form_script>
 					<cell type="label" name="idRecurso" pos="0,0,0,0,c,c" />
